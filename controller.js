@@ -6,48 +6,69 @@ Game.Controller = (function(){
     console.log("Game started");
     Game.BoardModule.initBoard();
     Game.Mole.createMoles();
-    console.log()
     _listenClickes(Game.Mole.moles);
     moleLoop();
   }
 
   function _listenClickes(){
+    
     $('.game-board').on('click', 'div', function(event){
       _dealWithMole(event);
     });
+  
   }
 
   function _dealWithMole(e){
-
-
-    if(_checkMole($(e.target).attr("id"))) {
-      $('#'+$(e.target).attr("id") + ' span').removeClass("glyphicon glyphicon-eye-open").addClass("glyphicon glyphicon-minus");
+    var mole_id = $(e.target).attr("id");
+    
+    if(_isMole(mole_id)) {
+      // $('#'+mole_id).removeClass("glyphicon glyphicon-eye-open").addClass("glyphicon glyphicon-minus");
+      Game.Mole.moles[mole_id].toggleState();
+      Game.Mole.renderMoles();
     }
    
   }
-  var moleLoop = function(){setInterval( function(){showMole()}, 1000);}
+  
+  var moleLoop = function(){
+    setInterval( function(){
+      Game.Mole.renderMoles();
+      showMole();
+
+    }, 3000);
+  };
 
   function showMole(){
     var id = 0;
-    var classMole = "glyphicon glyphicon-eye-open"
-    do { 
-      id = Math.floor(Math.random()*8);
-    } while ($('#'+id+'').hasClass(classMole));
+    var classMole = "glyphicon glyphicon-eye-open";
+    // var i = 0;
+    // do {
+    //   id = Math.floor(Math.random()*8);
+    //   if( i === 100){
+    //     break;
+    //   }
+    //   i++;
+    // } while ($('#'+id+'').hasClass(classMole));
     
-      $('#'+id+' span').removeClass("glyphicon glyphicon-eye-open").addClass(classMole);
-      Game.Mole.moles[id].state = true;
+      //normal code
+      // $('#'+id+' span').removeClass("glyphicon glyphicon-eye-open").addClass(classMole);
+      // Game.Mole.moles[id].state = true;
 
-    
+      //experimental
+      // Game.Mole.moles[id].render(id);
+      id = Math.floor(Math.random()*8);
+      Game.Mole.moles[id].toggleState();
+
   }
-  //Game.Mole.moles[e.target.attr("id")].look
-  function _checkMole(index){
-    console.log(index)
-    console.log(Game.Mole.moles[0].state)
-    return Game.Mole.moles[index].state
+
+  function _isMole(index){
+    console.log(index);
+    return Game.Mole.moles[index].state;
   }
+
   return {
     init: init,
   };
+
 })();
 
 $(document).ready(function(){
