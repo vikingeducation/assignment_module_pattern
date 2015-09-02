@@ -1,67 +1,72 @@
 var Mole = function(){
-  // Create mole
-  // Place on grid
-  // (Must pass grid into mole to place)
 
   var moleConstructor = function(){
     this.position = 0;
-  }
+  };
 
-  var setMolePosition = function(){
-
-  }
+  return{
+    moleConstructor: moleConstructor
+  };
 
 }();
 
 var User = function(){
-  // User interactions (score, etc)
-  var view = {
-    init: function(){
-      $('.mole-row').on('click', '*', function(event){
-      console.log($(event.currentTarget).attr('id'));
-      // var divClicked =
-      });
-    }
+  var score = 0;
+
+  var getScore = function(){
+    return score;
+  };
+
+  var setScore = function(){
+    score++;
   };
 
   return {
-    initializeView: view.init,
+    getScore: getScore,
+    setScore: setScore
   };
+
 }();
 
-var Grid = function(Mole, $){
+var Grid = function(Mole, User, $){
 
   var gameboard = {};
-
   var gridSize = 8;
 
-  var view = {
-    init: function(){
-      view.createGameboard();
-    },
+  var init = function(){
+    createGameboard();
+    setClickListener();
+  };
 
-    createGameboard: function(){
-      for(var i=0; i < gridSize; i++){
-        $('.mole-row').append('<div class="col-md-3 mole-hole" id="' + i + '"></div>');
-        Grid.setGameboard(i, '');
-      }
-    },
-
-    render: function(){
-      $('.mole').removeClass('mole');
-    },
-
-    update: function(){
-      // Create Mole
-      var newMole = new Mole.moleConsutrctor;
-      placeMoleOnGameboard()
-      // Render
-    },
-
-    placeMoleOnGameboard: function(){
-
+  var createGameboard = function(){
+    for(var i=0; i < gridSize; i++){
+      $('.mole-row').append('<div class="col-xs-3 mole-hole" id="' + i + '"></div>');
+      Grid.setGameboard(i, '');
     }
+  };
 
+  var setClickListener = function(){
+    $('.mole-row').on('click', '*', function(event){
+      var divClicked = $(event.currentTarget).attr('id');
+      checkhit(divClicked);
+    });
+  };
+
+  var removeMole = function(){
+    $('.mole').removeClass('mole');
+  };
+
+  var update = function(){
+    var newMole = new Mole.moleConstructor();     // Create new mole
+    removeMole();                                 // Remove prev mole
+    placeMoleOnGameboard(newMole);                // Place mole
+    $('#'+newMole.position).addClass('mole');
+    $('#score').text(User.getScore);
+  };
+
+  var placeMoleOnGameboard = function(newMole){
+    newMole.position = Math.floor(Math.random()*gridSize);
+    gameboard[newMole.position] = newMole;
   };
 
   var getGameboard = function(){
@@ -69,32 +74,34 @@ var Grid = function(Mole, $){
   };
 
   var setGameboard = function(position, object){
-    return gameboard[position] = object;
+    gameboard[position] = object;
   };
 
+  var checkhit = function(divClicked){
+    if ($('#'+divClicked).hasClass('mole')) {
+      User.setScore();
+      update();
+      console.log(User.getScore());
+    }
+  };
 
   return{
-    getGamebord: getGamebord,
+    getGameboard: getGameboard,
     setGameboard: setGameboard,
-    render: view.render,
-    update: view.update,
-    initializeView: view.init
+    update: update,
+    init: init,
   };
 
-}(Mole, $);
+}(Mole, User, $);
 
 var Main = function(User, Grid, $){
-  // Click listener on row
-  // At random intervals select a div and set to "mole" class
-  // If user clicks div when "mole" class set then mole is hit and score increments
   var init = function(){
-    User.initializeView();
-    Grid.initializeView();
+    Grid.init();
     gameLoop();
   };
 
   var gameLoop = function(){
-    window.gameLoop = window.setInterval(function(){Grid.update(); console.log("running");}, 1000);
+    window.gameLoop = window.setInterval(function(){Grid.update(); console.log("running");}, 2000);
   };
 
   return {

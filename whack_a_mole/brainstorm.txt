@@ -1,0 +1,15 @@
+
+Modules:
+User
+User interactions (score, etc)
+
+Main
+Click listener on row
+At random intervals select a div and set to "mole" class
+If user clicks div when "mole" class set then mole is hit and score increments
+
+Grid
+View
+
+Main
+Controller
