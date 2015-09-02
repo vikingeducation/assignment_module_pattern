@@ -1,9 +1,21 @@
 
-var civilSpaceShip = (function( Space){
+var Space = Space || {};
+
+Space.civilSpaceShip = (function(module){
 
   var _cargo = 25;
   var _civilians = 25;
 
-  return Space.Spaceship;
+  var pilots = function(){
+    if(module._fleet < _civilians){
+      return module._fleet;
+    }else{
+      return _civilians;
+    }
+  };
+  
+  return {
+    pilots: pilots
+  }
 
-})(Space || {} );
+})(Space.Spaceship || {} );
