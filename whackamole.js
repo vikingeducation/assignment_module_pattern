@@ -15,7 +15,7 @@ WAM.moleModule = (function() {
     this.body.addClass("popup");
     this.currentTimeout = setTimeout(function() {
       currentMole.hide();
-    }, 1000)
+    }, 2000)
   }
 
   Mole.prototype.hide = function() {
@@ -37,14 +37,20 @@ WAM.moleModule = (function() {
 
 })();
 
-WAM.gameModule = (function($$$){
+WAM.gameModule = (function($){
   var moles = [];
   var score = 0;
   var $scoreDisplay;
+  var screenHeight;
+  var screenWidth;
 
   var play = function(){
-    $scoreDisplay = $$$("#score");
-    for (var i = 0; i < 8; i++){
+    $scoreDisplay = $("#score");
+    screenHeight = $(window).height();
+    screenWidth = $(window).width();
+    var molesPerRow = Math.floor(screenWidth / 100);
+    var numOfRows = Math.floor((screenHeight - 50) / 100);
+    for (var i = 0; i < (molesPerRow * numOfRows) - numOfRows; i++){
       moles.push(new WAM.moleModule.Mole());
     }
     setInterval(function(){
@@ -61,7 +67,7 @@ WAM.gameModule = (function($$$){
 
   var updateScore = function(){
     console.log($scoreDisplay);
-    $scoreDisplay.text(score);
+    $scoreDisplay.text("Score: " + score);
   }
 
   return {

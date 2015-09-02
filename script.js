@@ -1,6 +1,6 @@
-var JEWEL = JEWEL || {}
+var NAMESPACE = NAMESPACE || {}
 
-JEWEL.myModule = (function(){
+NAMESPACE.myModule = (function(myStubModule){
   var _hiddenVar = 1;
   var _hiddenMethod = function(){
     return _hiddenVar;
@@ -16,8 +16,8 @@ JEWEL.myModule = (function(){
     return _hiddenMethod() + publicVar;
   };
 
-  var depInj = function(target){
-    return target.publicAndTwo() + publicAndOne();
+  var depInj = function(){
+    return myStubModule.publicAndTwo() + publicAndOne();
   };
 
   return {
@@ -27,4 +27,4 @@ JEWEL.myModule = (function(){
     depInj: depInj,
   };
 
-})();
+})(NAMESPACE.myStubModule);

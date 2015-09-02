@@ -1,6 +1,6 @@
-var JEWEL = JEWEL || {}
+var NAMESPACE = NAMESPACE || {}
 
-JEWEL.myStubModule = (function(){
+NAMESPACE.myStubModule = (function(){
   var stub = {};
   var _hiddenVar = 2;
   var _hiddenMethod = function(){
