@@ -19,6 +19,7 @@ Game.Mole = (function(){
     this.state = false;
 
   }
+  
   return {
     Mole: Mole,
   };
