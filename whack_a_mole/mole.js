@@ -1,4 +1,4 @@
-var Mole = function(){
+var Mole = (function(){
 
   var moleConstructor = function(){
     this.position = 0;
@@ -8,9 +8,9 @@ var Mole = function(){
     moleConstructor: moleConstructor
   };
 
-}();
+})();
 
-var User = function(){
+var User = (function(){
   var score = 0;
 
   var getScore = function(){
@@ -26,9 +26,9 @@ var User = function(){
     setScore: setScore
   };
 
-}();
+})();
 
-var Grid = function(Mole, User, $){
+var Grid = (function(Mole, User, $){
 
   var gameboard = {};
   var gridSize = 8;
@@ -92,9 +92,9 @@ var Grid = function(Mole, User, $){
     init: init,
   };
 
-}(Mole, User, $);
+})(Mole, User, $);
 
-var Main = function(User, Grid, $){
+var Main = (function(User, Grid, $){
   var init = function(){
     Grid.init();
     gameLoop();
@@ -107,7 +107,7 @@ var Main = function(User, Grid, $){
   return {
     init: init
   };
-}(User, Grid, $);
+})(User, Grid, $);
 
 
 $(document).ready(function(){Main.init();});
