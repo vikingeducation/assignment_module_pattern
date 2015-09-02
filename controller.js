@@ -22,7 +22,6 @@ Game.Controller = (function(){
     var mole_id = $(e.target).attr("id");
     
     if(_isMole(mole_id)) {
-      // $('#'+mole_id).removeClass("glyphicon glyphicon-eye-open").addClass("glyphicon glyphicon-minus");
       Game.Mole.moles[mole_id].toggleState();
       Game.Mole.renderMoles();
     }
@@ -40,21 +39,6 @@ Game.Controller = (function(){
   function showMole(){
     var id = 0;
     var classMole = "glyphicon glyphicon-eye-open";
-    // var i = 0;
-    // do {
-    //   id = Math.floor(Math.random()*8);
-    //   if( i === 100){
-    //     break;
-    //   }
-    //   i++;
-    // } while ($('#'+id+'').hasClass(classMole));
-    
-      //normal code
-      // $('#'+id+' span').removeClass("glyphicon glyphicon-eye-open").addClass(classMole);
-      // Game.Mole.moles[id].state = true;
-
-      //experimental
-      // Game.Mole.moles[id].render(id);
       id = Math.floor(Math.random()*8);
       Game.Mole.moles[id].toggleState();
 
