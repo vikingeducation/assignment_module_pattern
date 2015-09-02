@@ -1,18 +1,21 @@
 //Spaceship
 
-//var SpaceShip = SpaceShip || {};
+var Space = Space || {};
 
-var SpaceShipModule = (function(){
+Space.Spaceship = (function(){
+
+  var stub = {};
 
   var _fleet = 1000;
   var _fuel = 500;
   var _food = 100;
   var medicine = 10;
+  var bullets = 5;
 
-  var getMedicine = function(){
+  stub.getMedicine = function(){
     return medicine;
   };
-  var setMedicine = function(num){
+  stub.setMedicine = function(num){
     return medicine = num;
   };
 
@@ -27,17 +30,21 @@ var SpaceShipModule = (function(){
       }
   };
 
+  stub.bulletFired = function(){
+    return bullets -= 1;
+  };
+
   //public
-  var medicineSale = function(){
-    return medicine*0.3
+  stub.medicineSale = function(){
+    return medicine*0.3;
   };
 
-  var attackDistance = function(){
-    return (travelDistance() / NumberOfFleetAvailable())
+  stub.attackDistance = function(){
+    return (travelDistance() / stub.NumberOfFleetAvailable());
   };
 
 
-  var NumberOfFleetAvailable = function(){
+  stub.NumberOfFleetAvailable = function(){
     if(_fuel/5 < _fleet){
       return _fuel/5;
     }
@@ -46,12 +53,14 @@ var SpaceShipModule = (function(){
     }
   };
 
-  return {
-    medicineSale : medicineSale ,
-    getMedicine : getMedicine,
-    setMedicine : setMedicine,
-    attackDistance : attackDistance,
-    NumberOfFleetAvailable : NumberOfFleetAvailable
-  };
+  return stub;
+
+  // return {
+  //   medicineSale : medicineSale ,
+  //   getMedicine : getMedicine,
+  //   setMedicine : setMedicine,
+  //   attackDistance : attackDistance,
+  //   NumberOfFleetAvailable : NumberOfFleetAvailable
+  // };
 
 })();
