@@ -28,6 +28,8 @@ var User = (function(){
 
 })();
 
+// Add GridModel
+
 var Grid = (function(Mole, User, $){
 
   var gameboard = {};
