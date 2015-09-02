@@ -8,7 +8,7 @@ Game.BoardModule = (function(){
     this.$board = $('.game-board');
 
     for(var i = 0; i<8; i++ ){
-      $square = $('<div class="square"><span class="glyphicon glyphicon-minus"></span><div>');
+      $square = $('<div id="'+i+'" class="square"><span class="glyphicon glyphicon-minus"></span><div>');
       this.$board.append($square);
     }
   }
@@ -19,4 +19,4 @@ Game.BoardModule = (function(){
   };
 
 })();
-Game.BoardModule.initBoard();
+
