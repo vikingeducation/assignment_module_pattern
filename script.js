@@ -18,7 +18,7 @@ JEWEL.myModule = (function(){
 
   var depInj = function(target){
     return target.publicAndTwo() + publicAndOne();
-  }
+  };
 
   return {
     getPublicVar: getPublicVar,
