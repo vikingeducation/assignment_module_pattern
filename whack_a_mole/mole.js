@@ -3,7 +3,7 @@ var Mole = function(){
   // Place on grid
   // (Must pass grid into mole to place)
 
-  var Mole = function(){
+  var moleConstructor = function(){
     this.position = 0;
   }
 
@@ -17,8 +17,8 @@ var User = function(){
   // User interactions (score, etc)
   var view = {
     init: function(){
-      $('.mole-row').click(function(event){
-      console.log(event);
+      $('.mole-row').on('click', '*', function(event){
+      console.log($(event.currentTarget).attr('id'));
       // var divClicked =
       });
     }
@@ -33,14 +33,17 @@ var Grid = function(Mole, $){
 
   var gameboard = {};
 
+  var gridSize = 8;
+
   var view = {
     init: function(){
       view.createGameboard();
     },
 
     createGameboard: function(){
-      for(var i=0; i < 9; i++){
-        $('.mole-row').append('<div class="col-md-3 mole-hole id="></div>');
+      for(var i=0; i < gridSize; i++){
+        $('.mole-row').append('<div class="col-md-3 mole-hole" id="' + i + '"></div>');
+        Grid.setGameboard(i, '');
       }
     },
 
@@ -50,12 +53,18 @@ var Grid = function(Mole, $){
 
     update: function(){
       // Create Mole
+      var newMole = new Mole.moleConsutrctor;
+      placeMoleOnGameboard()
       // Render
+    },
+
+    placeMoleOnGameboard: function(){
+
     }
 
   };
 
-  var getGamebord = function(){
+  var getGameboard = function(){
     return gameboard;
   };
 
