@@ -15,9 +15,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font: normal 32px/32px Bitter;
+  font: normal 29px/29px Bitter;
   text-align: center;
-  padding: 5px;
+  padding: 3px;
 }
 
 
@@ -30,11 +30,13 @@ body {
   height: 100px;
   float: left;
   margin: 5px;
-  background: #123456 url("http://www.clipartlord.com/wp-content/uploads/2013/02/mole.png") no-repeat center bottom fixed;
-  background-size: auto auto;
+  background-color: #123456;
+  /*background: #123456 url("http://www.clipartlord.com/wp-content/uploads/2013/02/mole.png") repeat left bottom fixed;
+  background-size: 110px 110px;*/
 }
 
 .popup {
-  background: green url("");
+  background: #123456 url("http://www.clipartlord.com/wp-content/uploads/2013/02/mole.png") repeat left bottom fixed;
+  background-size: 110px 110px;
   z-index: 1
 }

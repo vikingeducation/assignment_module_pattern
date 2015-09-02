@@ -15,7 +15,8 @@ WAM.moleModule = (function() {
     this.body.addClass("popup");
     this.currentTimeout = setTimeout(function() {
       currentMole.hide();
-    }, 2000)
+      console.log(WAM.gameModule.getScore())
+    }, 1300 - Math.min(WAM.gameModule.getScore() * 5, 800) )
   }
 
   Mole.prototype.hide = function() {
@@ -55,7 +56,7 @@ WAM.gameModule = (function($){
     }
     setInterval(function(){
       popupMole();
-    }, 1500);
+    }, 1000 - Math.min(score * 5, 500));
   }
   var popupMole = function(){
     moles[Math.floor(Math.random() * moles.length)].popup();
@@ -63,6 +64,10 @@ WAM.gameModule = (function($){
   var incrementScore = function(){
     score++;
     updateScore();
+  }
+
+  var getScore = function() {
+    return score;
   }
 
   var updateScore = function(){
@@ -73,6 +78,7 @@ WAM.gameModule = (function($){
   return {
     play: play,
     incrementScore: incrementScore,
+    getScore: getScore
   }
 })($);
 
