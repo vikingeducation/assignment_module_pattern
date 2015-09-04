@@ -1,0 +1,14 @@
+.mole-hole {
+  background-color: green;
+  height: 200px;
+  border: 1px solid black;
+
+}
+
+.mole {
+  background-image: url("assets/mole.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+}
