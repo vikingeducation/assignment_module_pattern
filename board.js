@@ -3,9 +3,13 @@ var WHACK = WHACK || {};
 WHACK.Board = (function() {
 
   var $board;
+  var $scoreboard;
 
   function init() {
     $board = $('.container');
+    $scoreboard = $('.scoreboard')
+    $scoreboard.children('#reset-score').click( WHACK.MainModule.reset );
+
     var numberOfMoles = WHACK.MainModule.getNumberOfMoles();
     for (var i = 0; i < numberOfMoles; i++) {
       _drawMole(i);
@@ -36,12 +40,24 @@ WHACK.Board = (function() {
   };
 
 
+  function updateScore(newScore) {
+    $scoreboard.children('.score').text("Score: " + newScore);
+  };
+
+  function updateTimer() {
+    $scoreboard.children('.timer').text("Time: " + WHACK.MainModule.getTime() );
+  };
+
+
+
   return {
     init: init,
     activate: activate,
     deactivate: deactivate,
     enableControls: enableControls,
-    disableControls: disableControls
+    disableControls: disableControls,
+    updateScore: updateScore,
+    updateTimer: updateTimer
   };
 
 })();

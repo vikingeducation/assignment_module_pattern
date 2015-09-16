@@ -7,6 +7,7 @@ WHACK.MainModule = (function() {
   var _activateTimer;
   var _active;
   var score;
+  var playTimer;
 
 
   function init(number) {
@@ -21,6 +22,7 @@ WHACK.MainModule = (function() {
 
   function startGame() {
     score = 0;
+    playTimer = 0;
     _activateTimer = 0;
     WHACK.Board.enableControls();
     _playing = setInterval(_gameloop, 500)
@@ -29,6 +31,9 @@ WHACK.MainModule = (function() {
 
   function _gameloop() {
     _activateTimer += 500;
+    playTimer += 0.5;
+    WHACK.Board.updateTimer();
+
     var chance = _activateTimer / (_activateTimer + 500);
 
     if (Math.random() < chance) {
@@ -63,11 +68,14 @@ WHACK.MainModule = (function() {
 
 
   function userClick() {
+    WHACK.Board.disableControls();
     var moleID = $(event.target).index()
     if (WHACK.MoleModule.isActive(moleID)) {
+      _deactivateMole();
       score += 1;
+      WHACK.Board.updateScore(score);
     };
-    console.log(score);
+    setTimeout(WHACK.Board.enableControls, 500);
   };
 
 
@@ -77,15 +85,29 @@ WHACK.MainModule = (function() {
   };
 
 
+  function reset() {
+    score = 0;
+    playTimer = 0;
+    WHACK.Board.updateScore(score);
+    WHACK.Board.updateTimer();
+  };
+
+
   function getNumberOfMoles() {
     return numberOfMoles;
+  };
+
+  function getTime() {
+    return Math.floor(playTimer);
   };
 
 
   return {
     init: init,
     userClick: userClick,
-    getNumberOfMoles: getNumberOfMoles
+    reset: reset,
+    getNumberOfMoles: getNumberOfMoles,
+    getTime: getTime
   };
 
 })();

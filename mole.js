@@ -26,7 +26,7 @@ WHACK.MoleModule = (function () {
 
   _Mole.prototype.deactivate = function() {
     this.active = false;
-    _activeMoleID = undefined;
+    _activeMoleID = -1;
   };
 
   function buildMoles(number) {
