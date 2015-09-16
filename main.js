@@ -6,6 +6,8 @@ WHACK.MainModule = (function() {
   var _playing;
   var _activateTimer;
   var _active;
+  var score;
+
 
   function init(number) {
     numberOfMoles = number;
@@ -16,10 +18,14 @@ WHACK.MainModule = (function() {
     startGame();
   };
 
+
   function startGame() {
+    score = 0;
     _activateTimer = 0;
+    WHACK.Board.enableControls();
     _playing = setInterval(_gameloop, 500)
   };
+
 
   function _gameloop() {
     _activateTimer += 500;
@@ -30,6 +36,7 @@ WHACK.MainModule = (function() {
     };
   };
 
+
   function _toggleMole() {
     if (_active) {
       _deactivateMole();
@@ -39,6 +46,7 @@ WHACK.MainModule = (function() {
     };
   };
 
+
   function _activateRandomMole() {
     var moleID = WHACK.MoleModule.activateRandomMole();
     WHACK.Board.activate(moleID);
@@ -46,18 +54,37 @@ WHACK.MainModule = (function() {
 
   };
 
+
   function _deactivateMole() {
     WHACK.MoleModule.deactivateCurrentMole();
     WHACK.Board.deactivate();
     _active = false;
   };
 
+
+  function userClick() {
+    var moleID = $(event.target).index()
+    if (WHACK.MoleModule.isActive(moleID)) {
+      score += 1;
+    };
+    console.log(score);
+  };
+
+
+  function _endGame() {
+    WHACK.Board.disableControls();
+    clearInterval(_playing);
+  };
+
+
   function getNumberOfMoles() {
     return numberOfMoles;
   };
 
+
   return {
     init: init,
+    userClick: userClick,
     getNumberOfMoles: getNumberOfMoles
   };
 

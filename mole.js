@@ -43,9 +43,16 @@ WHACK.MoleModule = (function () {
     return mole.id;
   };
 
+
   function deactivateCurrentMole() {
     moles[_activeMoleID].deactivate;
   };
+
+
+  function isActive(moleID) {
+    return (moleID === _activeMoleID);
+  };
+
 
   function getMoles() {
     return moles;
@@ -56,6 +63,7 @@ WHACK.MoleModule = (function () {
     buildMoles: buildMoles,
     activateRandomMole: activateRandomMole,
     deactivateCurrentMole: deactivateCurrentMole,
+    isActive: isActive,
     getMoles: getMoles
   };
 

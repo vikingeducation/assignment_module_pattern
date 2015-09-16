@@ -25,10 +25,23 @@ WHACK.Board = (function() {
     $board.children().removeClass('active');
   };
 
+
+  function enableControls() {
+    $board.on('click', WHACK.MainModule.userClick )
+  };
+
+
+  function disableControls() {
+    $board.off('click');
+  };
+
+
   return {
     init: init,
     activate: activate,
-    deactivate: deactivate
+    deactivate: deactivate,
+    enableControls: enableControls,
+    disableControls: disableControls
   };
 
 })();
