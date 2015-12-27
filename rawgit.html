@@ -1,1 +1,33 @@
-rawgit.html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Whack A Mole</title>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="text-center">
+        Whack A Mole | Holy Moley!!!
+      </h1>
+      <h2 id="score" class="text-right text-success"></h2>
+      <div id="game"></div>
+    </main>
+
+    <script src="https://rawgit.com/BideoWego/assignment_module_pattern/master/assets/js/whack-a-mole/whack-a-mole.js"></script>
+
+    <script src="https://rawgit.com/BideoWego/assignment_module_pattern/master/assets/js/whack-a-mole/mole.js"></script>
+    <script src="https://rawgit.com/BideoWego/assignment_module_pattern/master/assets/js/whack-a-mole/game.js"></script>
+    <script>
+        WHACK_A_MOLE.Game.init();
+    </script>
+  </body>
+</html>
