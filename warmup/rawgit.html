@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Module Warmup</title>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="text-center">
+        Warmup with JavaScript Modules
+      </h1>
+      <pre id="output"></pre>
+    </main>
+
+    <script src="https://rawgit.com/BideoWego/assignment_module_pattern/master/assets/js/warmup/my-stub.js"></script>
+    <script src="https://rawgit.com/BideoWego/assignment_module_pattern/master/assets/js/warmup/my-module.js"></script>
+    <script>
+      $(document).ready(function() {
+        var puts = function() {
+          for (var key in arguments) {
+            var arg = arguments[key];
+            var text = $('#output').text();
+            $('#output').text(text + arg + "\n");
+            console.log(arg);
+          }
+        };
+
+        window.MyModule = MY_NAMESPACE.MyModule;
+        window.MyStub = MY_NAMESPACE.MyStub;
+
+        puts("MyModule");
+        puts(MyModule.myPublicVariable());
+        puts(MyModule.myPublicMethod());
+        puts("----");
+        puts("MyStub");
+        puts(MyStub.myPublicVariable("I done got set!"));
+        puts(MyStub.myPublicMethod());
+        puts("----");
+        puts("Dependency Injection Example")
+        puts(MyModule.thingICanNotDoOnMyOwn());
+
+      });
+    </script>
+  </body>
+</html>
