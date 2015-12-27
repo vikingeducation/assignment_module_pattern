@@ -4,7 +4,8 @@ var WHACK_A_MOLE = WHACK_A_MOLE || {};
 
 WHACK_A_MOLE.Mole = (function($) {
 
-  var _imageSrc = "/assets/images/mole.jpg";
+  var host = (window.location.hostname === 'localhost') ? '' : 'https://rawgit.com/BideoWego/assignment_module_pattern/master'; 
+  var _imageSrc = host + "/assets/images/mole.jpg";
 
   var _randomTime = function() {
     var times = [6000, 5000, 4000, 3000, 2000];
@@ -55,13 +56,12 @@ WHACK_A_MOLE.Mole = (function($) {
     this._id = setTimeout(function() {
       if (that.isHidden && !that.justWhacked) {
         that.show();
-      } else if (!that.isHidden && !justWhacked) {
+      } else if (!that.isHidden && !that.justWhacked) {
         that.hide();
       } else if (that.justWhacked) {
         that.justWhacked = false;
       }
     }, time);
-    console.log(time);
   };
 
   Mole.prototype.stopTimer = function() {
