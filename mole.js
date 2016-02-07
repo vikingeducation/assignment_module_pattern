@@ -50,7 +50,7 @@ WAM.moles = (function(util, $){
   var popUpMole = function(){
     var mole = _randMole();
     mole.fadeIn();
-    setTimeout(_hideMole(mole), 10000);
+    setTimeout(function(){ _hideMole(mole); }, 500);
   };
 
 
