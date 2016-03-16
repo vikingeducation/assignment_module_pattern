@@ -29,13 +29,19 @@ ML.BoardModule = (function(){
     }
   }
 
+  function showScore() {
+    $(".score").text(_score);
+  }
+
   function listenMouseClick() {
-    $board.on("click",function(event) {
-      var position = event.target;
+    $("body").on("click",".board",function(event) {
+      console.log("Clicked mouse ");
+      var position = $(event.target);
 
       if (position.hasClass("lit")) {
         _score++;
         position.removeClass("lit");
+        update();
       }
     });
   }
@@ -53,6 +59,7 @@ ML.BoardModule = (function(){
     init();
     randomLit();
     renderBoard();
+    showScore(); 
     listenMouseClick();
   }
 
