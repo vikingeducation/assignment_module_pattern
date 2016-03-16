@@ -1,0 +1,22 @@
+.mole {
+  /* background-color: grey; */
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  float: left;
+  margin: 10px;
+  transition: all 0.1s;
+  background-image: url(http://a-z-animals.com/media/animals/images/original/mole2.jpg);
+}
+
+.mole.showing {
+  background-color: red;
+  transform: translateY(-10px);
+  background-size: 100px 100px;
+}
+
+.mole.showing:hover {
+  background-color: red;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px red;
+}
