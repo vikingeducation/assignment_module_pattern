@@ -1,0 +1,15 @@
+.hole {
+  height: 100px;
+  width: 100px;
+  background-color: black;
+  display: inline-block;
+  margin: 10px;
+}
+
+.mole{
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  display: inline-block;
+  margin: 10px;
+}
