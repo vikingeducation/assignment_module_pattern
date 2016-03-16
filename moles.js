@@ -1,38 +1,41 @@
-var ML = ML || {}
+var ML = ML || {};
 
 
 ML.BoardModule = (function(){
 
-  var $board = $("#board"); 
-  var _boardArray [];
+  var $board = $(".board");
+  var _boardArray = [];
   var _index;
   var _score = 0;
 
   function init(){
-    for (var i = 0; i < 8, i++) {
+    for (var i = 0; i < 8; i++) {
       _boardArray[i] = false;
     }
   }
 
   function getBoardVars(){
-    ML.$board = $("#board");
+    ML.$board = $(".board");
   }
 
   function renderBoard() {
     for (var i = 0; i < 8; i++) {
       if (_boardArray[i]) {
-         $("#hole-"+i).addClass("lit");  
+         $("#hole-"+i).addClass("lit");
       }
-    }  
+      else{
+        $("#hole-"+i).removeClass("lit");
+      }
+    }
   }
 
   function listenMouseClick() {
     $board.on("click",function(event) {
       var position = event.target;
 
-      if (position.hasClass("lit") {
+      if (position.hasClass("lit")) {
         _score++;
-        position.removeClass("lit");  
+        position.removeClass("lit");
       }
     });
   }
@@ -43,13 +46,18 @@ ML.BoardModule = (function(){
   }
 
   function getHoleLit(i){
-    return _boardArray[i]
+    return _boardArray[i];
   }
 
   function update(){
     init();
     randomLit();
+    renderBoard();
     listenMouseClick();
+  }
+
+  function getScore(){
+    return _score;
   }
 
   function gameLoop() {
@@ -58,7 +66,11 @@ ML.BoardModule = (function(){
 
   // Return all public methods and properties
   return {
-    gameLoop: gameLoop();
+    gameLoop: gameLoop,
+    getScore: getScore
   };
-})()
+})();
 
+$( document ).ready(function(){
+  ML.BoardModule.gameLoop();
+});

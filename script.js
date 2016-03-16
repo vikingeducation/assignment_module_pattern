@@ -4,23 +4,23 @@ var MyModule = (function(){
   var publicVar = "public var";
 
   var _myMethod = function() {
-      return "Accessing private method!"
-  }
+      return "Accessing private method!";
+  };
 
   var publicMethod = function(){
-      return "Accessing public method!" };
+      return "Accessing public method!"; };
 
   var getPublicVar = function(){
-      return publicVar };
+      return publicVar; };
 
-  var setPublicVar = function(val){ 
+  var setPublicVar = function(val){
       return publicVar = val };
 
-  return { 
+  return {
     getPublicVar: getPublicVar,
     setPublicVar: setPublicVar,
     publicMethod: publicMethod,
-  }
+  };
 
 })();
 
@@ -31,18 +31,18 @@ var MyModule = (function(args){
 
   //private vraiable
   var privateProp = "private - val1";
-  
+
   //private Function
   var privateFunc = function(){
-       return "accessing private method!" }
+       return "accessing private method!"; };
 
-  //public var;     
+  //public var;
   var publicProp = "public - val2";
 
-  stub.getPublicProp = function(){ return publicProp };
+  stub.getPublicProp = function(){ return publicProp; };
   stub.setPublicProp = function(val){ return publicProp = val };
-  stub.publicFunc = function(){ 
-    return "I'm a public function!"}
+  stub.publicFunc = function(){
+    return "I'm a public function!";};
 
   return stub;
-})()
+})();
