@@ -14,10 +14,12 @@ MOLE.Game = (function(board, mole) {
 
 
   var showMole = function() {
+    var i;
     var randTime = function() {
       return Math.floor(Math.random() * 500) + 200
     }
-    setInterval(showThenHide, randTime())
+    clearInterval(i);
+    i = setInterval(showThenHide, randTime())
   }
 
 
