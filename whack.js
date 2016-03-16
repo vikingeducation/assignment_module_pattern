@@ -1,6 +1,15 @@
 var moleModule = (function() {
 
+  var _score = 0;
   var css = "mole";
+
+  var getScore = function() {
+    return _score;
+  }
+
+  var incrementScore = function() {
+    _score++;
+  }
 
   // constructor to create mole
   function Mole() {
@@ -9,16 +18,23 @@ var moleModule = (function() {
   }
 
   return {
-    Mole: Mole
+    Mole: Mole,
+    getScore: getScore,
+    incrementScore: incrementScore,
   };
 
 
 })();
 
 $(document).ready(function() {
-    $(".mole").on("click", function() {});
+    $(".row").on("click", ".mole", function() {
+      moleModule.incrementScore();
+      var allSquares = $(".square");
+      allSquares.removeClass("mole");
+    });
 
     setInterval(function() {
+      var $score = $('.game-stats').text( 'Score:' + moleModule.getScore() );
       var allSquares = $(".square");
 
       //clear all squares of moles
