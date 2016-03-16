@@ -1,0 +1,29 @@
+#board {
+  width: 1000px;
+  height: 500px;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid black;
+
+}
+
+body {
+  cursor: url("hammer.jpg"), auto;  
+}
+
+.grids {
+  width: 247px;
+  height: 247px;
+  margin: 0;
+  padding: 0 0;
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.lightup {
+  background-color: purple;
+}
+
+.correct {
+  background-image: url("mole.jpg");
+}
