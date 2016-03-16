@@ -1,0 +1,20 @@
+#board {
+  width: 1000px;
+  height: 500px;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
+.grids {
+  width: 248px;
+  height: 248px;
+  margin: 0;
+  padding: 0 0;
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.lightup {
+  background-color: purple;
+}
