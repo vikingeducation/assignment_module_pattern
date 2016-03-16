@@ -5,11 +5,11 @@ var moleModule = (function() {
 
   var getScore = function() {
     return _score;
-  }
+  };
 
   var incrementScore = function() {
     _score++;
-  }
+  };
 
   // constructor to create mole
   function Mole() {
