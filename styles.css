@@ -7,8 +7,8 @@
 }
 
 .grids {
-  width: 248px;
-  height: 248px;
+  width: 247px;
+  height: 247px;
   margin: 0;
   padding: 0 0;
   border: 1px solid black;
@@ -17,4 +17,8 @@
 
 .lightup {
   background-color: purple;
+}
+
+.correct {
+  background-color: green;
 }

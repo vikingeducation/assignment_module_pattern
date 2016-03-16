@@ -14,14 +14,16 @@ MOLE.Board = (function(){
   };
 
   var generateGrid = function(){
-    var counter = 0;
     for (var i = 0; i < height; i++) {
       for (var j = 0; j < width; j++) {
-        var $block = $('<div id='+counter+' class="grids">dfsdf</div>');
+        var $block = $('<div class="grids"></div>');
         $('#board').append($block);
-        counter ++;
       }
     }
+  }
+
+  var clearBoard = function() {
+    $('#board').html("")
   }
 
 
@@ -29,5 +31,6 @@ MOLE.Board = (function(){
     getHeight: getHeight,
     getWidth: getWidth,
     generateGrid: generateGrid,
+    clearBoard: clearBoard
   }
 } )();
