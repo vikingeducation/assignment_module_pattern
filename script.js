@@ -1,4 +1,7 @@
-var testModule = (function() {
+
+var MYSPACE = MYSPACE || { };
+
+MYSPACE.testModule = (function( testModule2stub) {
 
   var _privateVar = 666;
 
@@ -20,10 +23,11 @@ var testModule = (function() {
     console.log("Hello");
   };
 
+
   return {
     getPublicVar: getPublicVar,
     setPublicVar: setPublicVar,
-    sayHi: sayHi
+    sayHi: sayHi,
+    andrew: testModule2stub.andrew,
   };
-
-})();
+})( MYSPACE.testModule2stub );
