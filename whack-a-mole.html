@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>whack-a-mole!</title>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="mole.js"></script>
+</head>
+<style>
+  .hole {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border: 1px dashed #bbb;
+  }
+
+  .mole {
+    width: 100px;
+    height: 100px;
+    background-color: #f00;
+    display: none;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  body {
+    padding: 100px;
+  }
+
+</style>
+<body>
+<p>
+  <div id="0" class="hole"><div class="mole"></div></div>
+  <div id="1" class="hole"><div class="mole"></div></div>
+  <div id="2" class="hole"><div class="mole"></div></div>
+</p>
+<p>
+  <div id="3" class="hole"><div class="mole"></div></div>
+  <div id="4" class="hole"><div class="mole"></div></div>
+  <div id="5" class="hole"><div class="mole"></div></div>
+</p>
+<p>
+  <div id="6" class="hole"><div class="mole"></div></div>
+  <div id="7" class="hole"><div class="mole"></div></div>
+  <div id="8" class="hole"><div class="mole"></div></div>
+</p>
+<p>Score: <span></span></p>
+
+</body>
+</html>
