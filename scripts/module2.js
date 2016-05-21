@@ -1,6 +1,6 @@
 'use strict;'
 
-var mySecondModule = (function(){
+MP.mySecondModule = (function(otherModule){
   var stub = {};
 
   var _secretPower = "bringing joy";
@@ -12,11 +12,13 @@ var mySecondModule = (function(){
   };
 
   stub.whatAreMyPowers = function(){
-    // var text = 'I am ' + publicName + ' which is short for ' + _secretName
-    var text = "My super power seems like it is " + publicPower + ", but it is actually " + _secretPower
-    console.log(text);
+    var text = "My super power seems like it is " + publicPower + ", but it is actually " + _secretPower + '.';
     return text;
   };
 
+  stub.describeMe = function(){
+    return otherModule.whoAmI() + ' ' + this.whatAreMyPowers();
+  };
+
   return stub;
-})();
+})(MP.myFirstModule);

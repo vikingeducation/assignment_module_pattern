@@ -1,6 +1,10 @@
 'use strict;'
 
-var myFirstModule = (function(){
+// Add to the existing namespace or
+// initialize a new one instead
+var MP = MP || {}
+
+MP.myFirstModule = (function(){
   var stub = {};
 
   var _secretName = "Harold";
@@ -12,8 +16,7 @@ var myFirstModule = (function(){
   };
 
   stub.whoAmI = function(){
-    var text = 'I am ' + publicName + ' which is short for ' + _secretName
-    console.log(text);
+    var text = 'I am ' + publicName + ' which is short for ' + _secretName + '.';
     return text;
   };
 
