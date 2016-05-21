@@ -1,23 +1,21 @@
 'use strict;'
 
 var myFirstModule = (function(){
+  var stub = {};
+
   var _secretName = "Harold";
   var publicName = "Harry";
 
-  var getPublicName = function(){ return publicName };
-  var setPublicName = function(newName){
+  stub.getPublicName = function(){ return publicName };
+  stub.setPublicName = function(newName){
     return publicName = newName
   };
 
-  var whoAmI = function(){
+  stub.whoAmI = function(){
     var text = 'I am ' + publicName + ' which is short for ' + _secretName
     console.log(text);
     return text;
   };
 
-  return {
-    getPublicName: getPublicName,
-    setPublicName: setPublicName,
-    whoAmI: whoAmI
-  }
+  return stub;
 })();
