@@ -11,7 +11,7 @@ WAM.MainModule = (function(){
   var stub = {};
 
   // Private Variables
-  var _numMoles = 8;
+  var _numHoles = 8;
   var _moles = [];
 
   // Public Variables
@@ -23,19 +23,20 @@ WAM.MainModule = (function(){
   // Build moles, Set up click listeners, Kick off game loop
   stub.init = function(){
     console.log("Initializing Main Module...");
-    _buildMoles();
+    _buildHoles();
     // _listenForClick();
     // _startGameLoop();
   };
 
 
   // Build the moles
-  var _buildMoles = function(num){
-    console.log("...building Moles...");
-    for (var i = 0; i < _numMoles; i++) {
-
-      var mole = new WAM.MoleModule.Mole(i);
-      _moles.push( mole );
+  var _buildHoles = function(num){
+    console.log("...building Holes...");
+    for (var i = 0; i < _numHoles; i++) {
+      var $hole = $('<div><div>')
+        .attr('class', 'hole')
+        .attr("id", i);
+      $('#game-board').append($hole);
     }
   }
 
@@ -80,13 +81,13 @@ WAM.MainModule = (function(){
   // }
 
 
-  // // Set the interval to run _tic
-  // function _startGameLoop(){
-  //   console.log("setting up game loop");
-  //   setInterval(function(){
-  //     _tic();
-  //   }, 10)
-  // }
+  // Set the interval to run _tic
+  function _startGameLoop(){
+    console.log("setting up game loop");
+    setInterval(function(){
+      _tic();
+    }, 100)
+  }
 
 
   // // Add a mortar to the fired mortars array
