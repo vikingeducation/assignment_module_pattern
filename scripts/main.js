@@ -25,11 +25,11 @@ WAM.MainModule = (function(){
     console.log("Initializing Main Module...");
     _buildHoles();
     // _listenForClick();
-    // _startGameLoop();
+    _startGameLoop();
   };
 
 
-  // Build the moles
+  // Build the holes
   var _buildHoles = function(num){
     console.log("...building Holes...");
     for (var i = 0; i < _numHoles; i++) {
@@ -61,24 +61,24 @@ WAM.MainModule = (function(){
   // }
 
 
-  // // On each tic of the game loop
-  // // clearRenderedObjects
-  // // render Mortars
-  // function _tic(){
+  // On each tic of the game loop
+  // clearRenderedObjects
+  // render Mortars
+  function _tic(){
+    // Remove any remaining moles
+    _clearMoles();
 
-  //   // Perform the behind-the-scenes work
-  //   _ticLaunchers();
-  //   _ticMortars();
-  //   _convertMortarsToExplosions();
+    // Perform the behind-the-scenes work
+    _addMole();
 
-  //   // Perform the rendering work
-  //   _clearRenderedObjects();
-  //   _renderLaunchers();
-  //   _renderMortars();
+    // Perform the rendering work
+    _renderScore();
+    // _clearRenderedObjects();
+    // _renderLaunchers();
+    // _renderMortars();
 
-  //   // Perform clean-up work
-  //   _clearFadedExplosions();
-  // }
+
+  }
 
 
   // Set the interval to run _tic
@@ -86,7 +86,20 @@ WAM.MainModule = (function(){
     console.log("setting up game loop");
     setInterval(function(){
       _tic();
-    }, 100)
+    }, 3000)
+  }
+
+  function _renderScore(){
+    $('#score').text(score);
+  }
+
+  function _clearMoles(){
+    _moles = [];
+    $('.hole').removeClass('mole');
+  }
+
+  function _addMole(){
+    _moles.push(new WAM.MoleModule.Mole(_numHoles));
   }
 
 
