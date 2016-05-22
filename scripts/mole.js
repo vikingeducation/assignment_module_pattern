@@ -11,16 +11,20 @@ WAM.MoleModule = (function (){
     return Math.floor(Math.random() * numHoles);
   }
 
-  function _hideMole(mole){
+  function hideMole(mole){
     $('#' + mole.position).removeClass('mole');
   }
 
   // Constructor for a new Mole
   function Mole(numHoles){
+    this.init(numHoles);
+  }
+
+  Mole.prototype.init = function(numHoles){
     this.position = _randomPosition(numHoles);
     this.render();
     this.countdown();
-  }
+  };
 
   // Render the mole
   Mole.prototype.render = function(){
@@ -28,10 +32,13 @@ WAM.MoleModule = (function (){
   };
 
   Mole.prototype.countdown = function(){
-    var duration = Math.floor(Math.random() * 4000) + 1000;
+    var duration = Math.floor(Math.random() * 3500) + 1000;
     var self = this;
-    window.setTimeout(_hideMole, duration, self);
+    window.setTimeout(hideMole, duration, self);
   };
 
-  return { Mole: Mole };
+  return {
+    Mole: Mole,
+    hideMole: hideMole
+  };
 })();

@@ -24,7 +24,7 @@ WAM.MainModule = (function(){
   stub.init = function(){
     console.log("Initializing Main Module...");
     _buildHoles();
-    // _listenForClick();
+    _listenForClick();
     _startGameLoop();
   };
 
@@ -41,52 +41,35 @@ WAM.MainModule = (function(){
   }
 
 
-  // // When the player initiates a click
-  // // startFueling the activeLauncher
-  // function _listenForMouseDown(){
-  //   ML.BoardModule.$board.on("mousedown",function(e){
-  //     _activeLauncher.startFueling();
-  //   })
-  // }
+  // Click listener
+  function _listenForClick(){
+    $('.hole').click(_detectMole);
+  }
 
-
-  // // When the player releases a click
-  // // fireMortar from the activeLauncher
-  // // activateNextLauncher
-  // function _listenForMouseUp(){
-  //   ML.BoardModule.$board.on("mouseup",function(e){
-  //     _activeLauncher.fireMortar();
-  //     _activateNextLauncher();
-  //   })
-  // }
-
+  // Increase score, and remove mole image
+  function _detectMole(event){
+    if ($(event.target).hasClass('mole')){
+      score += 1;
+      _renderScore();
+      $(event.target).removeClass('mole');
+    }
+  }
 
   // On each tic of the game loop
-  // clearRenderedObjects
-  // render Mortars
   function _tic(){
     // Remove any remaining moles
     _clearMoles();
 
-    // Perform the behind-the-scenes work
+    // Add a new mole
     _addMole();
-
-    // Perform the rendering work
-    _renderScore();
-    // _clearRenderedObjects();
-    // _renderLaunchers();
-    // _renderMortars();
-
-
   }
-
 
   // Set the interval to run _tic
   function _startGameLoop(){
     console.log("setting up game loop");
     setInterval(function(){
       _tic();
-    }, 3000)
+    }, 2500)
   }
 
   function _renderScore(){
@@ -101,77 +84,6 @@ WAM.MainModule = (function(){
   function _addMole(){
     _moles.push(new WAM.MoleModule.Mole(_numHoles));
   }
-
-
-  // // Add a mortar to the fired mortars array
-  // function addFiredMortar(mortar){
-  //   _firedMortars.push(mortar);
-  // }
-
-
-  // // Convert any exploded Mortars into Explosions
-  // // We'll otherwise treat these as normal Mortars
-  // // until they fizzle out because they inherit
-  // // from Mortars.
-  // // We're treating them polymorphically.
-  // function _convertMortarsToExplosions(){
-
-  //   _firedMortars.forEach(function(mortar, index, array){
-  //     if(mortar.exploding == true){
-
-  //       // Get the explosion our mortar turned into.
-  //       var explosion = mortar.convertToExplosion();
-
-  //       // Splice that in place of the "exploded" mortar
-  //       array.splice(index, 1, explosion);
-
-  //     };
-  //   });
-  // }
-
-
-  // // Clear any faded explosions from the mortars array
-  // function _clearFadedExplosions(){
-  //   _firedMortars.forEach(function(mortar, index, array){
-  //     if(mortar.finished == true){
-  //       array.splice(index, 1);
-  //     };
-  //   });
-  // }
-
-
-  // // Run the increment "tic" on all launchers
-  // function _ticLaunchers(){
-  //   _launchers.forEach(function(launcher){
-  //     launcher.tic();
-  //   });
-  // }
-
-
-  // // run the increment "tic" on all mortars
-  // function _ticMortars(){
-  //   _firedMortars.forEach(function(mortar){
-  //     mortar.tic();
-  //   });
-  // }
-
-
-  // // Go through the queue rendering all mortars and
-  // // explosions
-  // function _renderMortars(){
-  //   _firedMortars.forEach(function(mortar){
-  //     mortar.render();
-  //   });
-  // }
-
-
-  // // Go through the queue rendering all launchers
-  // function _renderLaunchers(){
-  //   _launchers.forEach(function(launcher, b, c){
-  //     launcher.render();
-  //   });
-  // }
-
 
   // Return public methods
   return stub;
