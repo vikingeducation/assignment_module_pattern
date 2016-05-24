@@ -4,9 +4,6 @@ var WAM = WAM || {}
 
 WAM.MoleModule = (function (){
 
-  // 0 for hidden, 1 for popped up
-  var _initialStatus = 0;
-
   function _randomPosition(numHoles){
     return Math.floor(Math.random() * numHoles);
   }
