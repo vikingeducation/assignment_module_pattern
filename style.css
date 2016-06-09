@@ -1,0 +1,18 @@
+#game-board {
+  width: 500px;
+  line-height: 10px
+}
+
+.hole {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  margin: 5px;
+  background-color: brown;
+}
+
+.mole {
+  background-image: url('mole.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
