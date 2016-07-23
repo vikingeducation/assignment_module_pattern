@@ -29,9 +29,14 @@ var model = {
   		return publicVar = val
   	};
 
+  	var returnVariablesJoinedTogether = function(){
+  		return _privateVar + publicVar
+  	};
+
   	return {
   		getPublicVar: getPublicVar,
-  		setPublicVar: setPublicVar
+  		setPublicVar: setPublicVar,
+  		returnVariablesJoinedTogether: returnVariablesJoinedTogether
   	};
   })()
 
