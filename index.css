@@ -1,12 +1,12 @@
 #game-board {
   border: 1px solid black;
   display: inline-block;
-  height: 75px; }
+  height: 120px; }
   #game-board .square {
     border: 1px solid black;
     display: inline-block;
     margin: 15px;
-    height: 45px;
-    width: 45px; }
+    height: 90px;
+    width: 90px; }
 
 /*# sourceMappingURL=index.css.map */
