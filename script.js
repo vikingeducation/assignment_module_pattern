@@ -36,6 +36,9 @@ var model = {
   	return {
   		getPublicVar: getPublicVar,
   		setPublicVar: setPublicVar,
+  		debug: function(){
+  			debugger;
+  		},
   		returnVariablesJoinedTogether: returnVariablesJoinedTogether
   	};
   })()
