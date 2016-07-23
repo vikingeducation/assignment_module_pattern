@@ -39,7 +39,7 @@ model.revealingModule = (function(){
 
   // TASK: For very large modules, it can sometimes be easier to creat the returned object first and then explicitly add any public methods or variables to it.
   // This also means you don't have to explicitily identify private methods using an underscore (which was just for convenience anyways)
-model.stubModule = (function(){
+model.stubModule = (function( stubModuleTwo, $ ){
   	var stub = {};
 
   	var privateVar = "Duh duh duhhh";
@@ -57,5 +57,10 @@ model.stubModule = (function(){
   		return privateVar + publicVar
   	};
 
+  	stub.returnCurrentBand = function(){
+  		return stubModuleTwo.returnBandPlayingOnComputer();
+  	};
+
   	return stub;
-  })();
+  })( model.stubModuleTwo, $ );
+  // In the code above, we're passing in the other module and jQuery.

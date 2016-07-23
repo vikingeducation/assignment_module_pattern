@@ -20,5 +20,9 @@ model.stubModuleTwo = (function(){
   		return privateVar + publicVar
   	};
 
+    stub.returnBandPlayingOnComputer = function(){
+      return "Frankie Valli & The Four Seasons";
+    };
+
   	return stub;
   })();
