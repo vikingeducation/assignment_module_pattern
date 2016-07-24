@@ -1,17 +1,7 @@
-$square-margin: 15px;
-$square-dimension: $square-margin * 6;
-$game-board-height: $square-margin * 2 + $square-dimension;
-
 #game-board {
-  border: 1px solid black;
   display: inline-block;
-  height: $game-board-height;
 
   .square {
-    border: 1px solid black;
     display: inline-block;
-    margin: $square-margin;
-    height: $square-dimension;
-    width: $square-dimension;
   }
 }
