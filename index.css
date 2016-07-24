@@ -3,4 +3,9 @@
   #game-board .square {
     display: inline-block; }
 
+.score-container #score-label {
+  display: inline-block; }
+.score-container #score {
+  display: inline-block; }
+
 /*# sourceMappingURL=index.css.map */

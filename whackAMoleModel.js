@@ -8,7 +8,13 @@ var model = (function(){
   var gameBoard = {};
   getGameBoard = function(){ return gameBoard };
 
+  var score = 0;
+  getScore = function(){ return score };
+  addToScore = function( value ){ score += value };
+
   init = function( gameBoard, gameBoardBorderWidth, numberOfSquares, squaresArray, squareBorderWidth, squareMargin ){
+    score = 0;
+
   	var squareWidth = calculateSquareWidth( squareMargin );
 
   	setGameBoardProperties( gameBoard,
@@ -64,12 +70,27 @@ var model = (function(){
     return hexColorCode;
   };
 
+  // model.randomNumber
+  // Random number from 0 to largestNumber
+  randomNumber = function( largestNumber, smallestNumber ){
+    var smallest = smallestNumber || 0;
+    var number =  Number( (Math.random() * largestNumber).toFixed(0) );
+    while (number < smallestNumber) {
+      number = Number( (Math.random() * largestNumber).toFixed(0) );
+    };
+    return number;
+  };
+
   return {
   	init: init,
 
-  	getGameBoard: getGameBoard,
+    getScore: getScore,
+    addToScore: addToScore,
 
+  	getGameBoard: getGameBoard,
   	getSquaresArray: getSquaresArray,
+
+    randomNumber: randomNumber
   };
 
 })();

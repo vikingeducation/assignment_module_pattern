@@ -42,16 +42,33 @@ var controller = (function(model, view, $){
   			   squareClassName, 
   			   gameBoardWidth );
 
-  	startGame();
+  	startGame( squaresArray );
   },
 
   // controller.starGame
-  startGame = function(  ){
+  startGame = function( squaresArray ){
+  	var counter = 0;
+  	var index = null;
+  	var resetSquareTime = 0;
   	gameInterval = setInterval(
   	  function(){
+  	  	counter++;
+  	  	if (counter > resetSquareTime){
+  	  		// I want to reset any square was previously on...
+  	  		view.resetSquare( index );
 
+  	  		// Then I want to get a new random square to highlight and put a listener on.
+  	  		index = model.randomNumber( squaresArray.length - 1 );
+  	  		var squareToColor = squaresArray[index];
+
+  	  		// put color on that square and listener
+  	  		view.activateSquare( squareToColor.hexColorCode, index );
+
+  	  		// I want to set a new time for the square to be colored for.
+  	  		resetSquareTime = counter + model.randomNumber( 20, 5 );
+  	  	};
   	  }
-  	, 3000)
+  	, 100)
   }
 
   return {
