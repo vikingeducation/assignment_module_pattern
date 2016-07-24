@@ -1,73 +1,151 @@
 'use_strict;'
 
-var controller = {
-  init: function( model, view, idOfGameBoard, numberOfSquares, squareClassName ){
-  	model.init();
-  	view.init( idOfGameBoard, numberOfSquares );
-  }
-};
+// Remember the point of this is to practice with modules...
 
-var model = {
-  init: function(){
+var model = (function(){
 
-  },
+  var squaresArray = [];
+  getSquaresArray = function(){ return squaresArray };
+
+  var gameBoard = {};
+  getGameBoard = function(){ return gameBoard };
+
+  init = function( gameBoard, gameBoardBorderWidth, numberOfSquares, squaresArray, squareBorderWidth, squareMargin, squareWidth ){
+  	setGameBoardProperties( gameBoard,
+  							gameBoardBorderWidth, 
+  							numberOfSquares, 
+  							squareBorderWidth, 
+  							squareMargin, 
+  							squareWidth );
+
+  	createSquares( numberOfSquares, squaresArray );
+  };
+
+  function squareConstructor( hexColorCode ){
+  	this.hexColorCode = hexColorCode;
+  };
+
+  // model.setGameBoardProperties
+  setGameBoardProperties = function( gameBoard, gameBoardBorderWidth, numberOfSquares, squareBorderWidth, squareMargin, squareWidth ){
+  	gameBoard.width = numberOfSquares * (squareWidth + 2 * squareMargin + 2 * squareBorderWidth) + 2 * gameBoardBorderWidth;
+  };
+
+  // model.createSquares
+  createSquares = function( numberOfSquares, squaresArray ){
+  	for(var i = 0; i < numberOfSquares; i++){
+  		var randomHexColorCode = getRandomHexColorCode();
+  		var newSquare = new squareConstructor( randomHexColorCode );
+  		squaresArray.push( newSquare );
+  	};
+  };
 
   // model.getRandomHexColorCode
-  getRandomHexColorCode: function() {
+  getRandomHexColorCode = function() {
     var letters = '0123456789ABCDEF';
     var hexColorCode = '#';
     for (var i = 0; i < 6; i++ ) {
         hexColorCode += letters[Math.floor(Math.random() * 16)];
     }
     return hexColorCode;
-  },
-};
+  };
 
-var view = {
-  init: function( idOfGameBoard, numberOfSquares, squareClassName ){
-  	var idOfGameBoard = idOfGameBoard || 'game-board';
-  	var numberOfSquares = numberOfSquares || 8;
-  	var squareClassName = squareClassName || 'square';
-  	view.addSquaresToGameBoard( idOfGameBoard, numberOfSquares, squareClassName );
-  	view.setWidthOfGameBoard( idOfGameBoard, numberOfSquares, squareClassName );
-  	view.assignColorsToSquares(squareClassName);
-  }, 
+  return {
+  	init: init,
+
+  	getGameBoard: getGameBoard,
+
+  	getSquaresArray: getSquaresArray,
+  };
+
+})();
+
+var view = (function(){
+  init = function( idOfGameBoard, numberOfSquares, squareClassName, widthOfGameBoard ){
+  	addSquaresToGameBoard( idOfGameBoard, numberOfSquares, squareClassName );
+  	setWidthOfGameBoard( idOfGameBoard, widthOfGameBoard );
+  };
 
   // view.addSquaresToGameBoard
-  addSquaresToGameBoard: function( idOfGameBoard, numberOfSquares, squareClassName ){
+  addSquaresToGameBoard = function( idOfGameBoard, numberOfSquares, squareClassName ){
   	for(var i = 0; i < numberOfSquares; i++) {
   		$("#" + idOfGameBoard).append("<div class='" + squareClassName + "' id='square-" + i + "'></div>")
   	};
-  },
+  };
 
-  // view.assignColorToSquare
-  assignColorToSquare: function(hexColorCode, $square){
-  	$square.css("background-color", hexColorCode);
-  },
-
-  // view.assignColorsToSquares
-  assignColorsToSquares: function(squareClassName){
-  	var squares = $("." + squareClassName);
-  	$(squares).each( function(){
-  		var randomHexColorCode = model.getRandomHexColorCode();
-  		view.assignColorToSquare( randomHexColorCode, $("#" + this.id) );
-  	} );
-  },
+  // view.setBackgroundColor
+  setBackgroundColor = function( hexColorCode, $object ){
+  	$object.css("background-color", hexColorCode);
+  };
 
   // view.setWidthOfGameBoard
-  setWidthOfGameBoard: function( idOfGameBoard, numberOfSquares, squareClassName ){
-  	var squareClassName = "." + squareClassName;
-  	var widthOfGameBoardBorder = parseInt($("#game-board").css("border"));
-  	var widthOfSquareBorder = parseInt($(squareClassName).css("border"));
-  	var widthOfSquare = $(squareClassName).width();
-  	var marginOfSquare = parseInt($(squareClassName).css("margin"));
+  setWidthOfGameBoard = function( idOfGameBoard, widthOfGameBoard ){
+  	$("#" + idOfGameBoard).width( widthOfGameBoard );
+  };
 
-  	var widthOfGameBoard = numberOfSquares * widthOfSquare + numberOfSquares * 2 * marginOfSquare + 2 * widthOfGameBoardBorder + numberOfSquares * 2 * widthOfSquareBorder;
+  return {
+  	init: init,
+  };
 
-  	$("#" + idOfGameBoard).css("width", widthOfGameBoard);
+})();
+
+var controller = (function(model, view, $){
+  init = function( gameBoard,
+  				   gameBoardBorderWidth, 
+  				   numberOfSquares,
+  				   squaresArray,
+  				   squareBorderWidth, 
+  				   squareMargin, 
+  				   squareWidth, 
+  				   idOfGameBoard, 
+  				   numberOfSquares, 
+  				   squareClassName ){
+  	var idOfGameBoard = idOfGameBoard || 'game-board';
+  	var numberOfSquares = numberOfSquares || 8;
+  	var squareClassName = squareClassName || 'square';
+
+  	model.init( gameBoard,
+  				gameBoardBorderWidth, 
+  				numberOfSquares, 
+  				squaresArray,
+  				squareBorderWidth, 
+  				squareMargin, 
+  				squareWidth );
+
+  	var gameBoardWidth = gameBoard.width;
+
+  	view.init( idOfGameBoard, numberOfSquares, squareClassName, gameBoardWidth );
+
+  	startGame();
+  },
+
+  // controller.starGame
+  startGame = function(  ){
+  	gameInterval = setInterval(
+  	  function(){
+
+  	  }
+  	, 3000)
   }
-};
+
+  return {
+  	init: init,
+  }
+
+})(model, view, $);
 
 $(document).ready(function(){
-  controller.init( model, view );
+  var gameBoard = model.getGameBoard();
+  var squaresArray = model.getSquaresArray();
+  var gameBoardBorderWidth = 1;
+  var numberOfSquares = 8;
+  var squareBorderWidth = 1;
+  var squareMargin = 15;
+  var squareWidth = 90;
+  controller.init( gameBoard, 
+  				   gameBoardBorderWidth, 
+  				   numberOfSquares, 
+  				   squaresArray, 
+  				   squareBorderWidth, 
+  				   squareMargin, 
+  				   squareWidth );
 });
