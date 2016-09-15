@@ -23,9 +23,10 @@ APP.model = (function() {
 
   return {
     getMoles: function() {
-      _createMole();
       return _moles;
     },
+
+    createMoles: _createMole,
 
     getScore: function() {
       return _score;
@@ -74,17 +75,16 @@ APP.controller = (function(model, view) {
 
   var _gameLoop = function() {
     var counter =  0
-    var moles = model.getMoles();
+    model.createMoles();
 
     setInterval(function() {
-
-      if(counter % 5 === 0) {
-        moles = model.getMoles();
-      }
-
+      var moles = model.getMoles();
       view.render(moles, model.getScore());
+      if(counter % 10 === 0) {
+        model.createMoles();
+      }
       counter++
-    }, 400);
+    }, 200);
   }
 
 
