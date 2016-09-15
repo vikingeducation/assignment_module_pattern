@@ -1,35 +1,36 @@
-module = (function(text, $) {
+var app = app || {};
+
+app.module = (function(text, $) {
   var _$h1;
+  var stub = {};
 
   var _getH1Length = function() {
     return _$h1.text().length
   }
 
+  stub.init = function() {
+    _$h1 = $("h1");
+  };
 
-  return {
-    init: function() {
-      _$h1 = $("h1");
-    },
+  stub.setH1Text = function() {
+    _$h1.text(text);
+  };
 
-    setH1Text: function() {
-      _$h1.text(text);
-    },
+  stub.getH1Text = function() {
+    return _$h1.text();
+  };
 
-    getH1Text: function() {
-      return _$h1.text();
-    },
+  stub.getTextAndLength = function() {
+    console.log(_$h1.text());
+    console.log(_getH1Length());
+  };
 
-    getH1TextLength: _getH1Length,
+  return stub;
 
-    getTextAndLength: function() {
-      console.log(_$h1.text());
-      console.log(_getH1Length());
-    }
-  }
 })("hiiiii", $);
 
 
 $(document).ready(function() {
-            module.init();
-            module.setH1Text();
+            app.module.init();
+            app.module.setH1Text();
             })
