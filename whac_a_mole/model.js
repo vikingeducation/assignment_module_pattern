@@ -15,6 +15,14 @@ var Model = (function(){
     _grid[Math.floor(Math.random() * _grid.length)] = "MOLE"; 
   };
 
+  var removeRandomMole = function() {
+    var locations = moleLocations();
+    var length = locations.length;
+    if(length > 0) {
+      _grid[locations[Math.floor(Math.random() * length)]] = null;
+    }
+  };
+
   var removeMole = function(index) {
     _grid[index] = null;
   };
