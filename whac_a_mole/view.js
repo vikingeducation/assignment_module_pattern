@@ -8,13 +8,14 @@ var View = (function($) {
     _moles = config.allMoles;
     onHit = config.onHit;
     gridSize = config.gridSize;
+    _renderEmptyGrid();
     clickListener();
   }
 
   var render = function(moles) {
     _moles = moles
-    $("#grid").empty();
-    _renderEmptyGrid();
+    // $("#grid").empty();
+    // _renderEmptyGrid();
     for (var i in _moles) {
       $("#" + _moles[i]).addClass("mole")
     }
@@ -32,9 +33,7 @@ var View = (function($) {
 
   var clickListener = function() {
     console.log("listener called")
-    $('#grid').on("click", ".cell", function() {
-      console.log("clicked!")
-
+    $("#grid").on("click", ".mole", function() {
       var index = $(this).attr("id");
       onHit(index);
     });

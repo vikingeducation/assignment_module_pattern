@@ -12,7 +12,7 @@ var Controller = (function(Model, View) {
   };
 
   var _setTheInterval = function() {
-    setInterval(_playGame, 40);
+    setInterval(_playGame, 100);
   };
 
   var init = function() {
@@ -38,4 +38,5 @@ var Controller = (function(Model, View) {
 
 $(document).ready(function() {
   Controller.init();
+
 })
