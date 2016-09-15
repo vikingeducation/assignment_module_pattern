@@ -4,4 +4,10 @@
   border: 1px solid black;
   border-radius: 50%;
   display: inline-block;
+  cursor: pointer;
+}
+
+.lit{
+  background-image: url("mole.jpeg");
+  background-size: contain;
 }

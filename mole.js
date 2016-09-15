@@ -77,7 +77,7 @@ var view = (function() {
         .addClass('mole')
         .appendTo($('#mole-container'));
       if (moles[i].lit) {
-        mole.css('background-color', moles[i].color);
+        mole.addClass("lit");
       }
     }
     $("#score").text("Your score: " + score);
