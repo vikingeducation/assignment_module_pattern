@@ -5,20 +5,21 @@ APP.model = (function() {
   var _score = 0;
 
   var _createMole = function() {
-    _moles = [false, false, false, false, false, false, false, false];
+    _setMolesToFalse();
     var moleNum = Math.floor(Math.random() * _moles.length);
     _moles[moleNum] = true;
   };
+
+
+
+  var _setMolesToFalse = function() {
+    _moles = [false, false, false, false, false, false, false, false];
+  }
 
   var _updateScore = function() {
     _score++;
   };
 
-  var _checkHit = function(num) {
-    if (_moles[num]) {
-      _updateScore();
-    }
-  };
 
   return {
     getMoles: function() {
@@ -26,17 +27,24 @@ APP.model = (function() {
       return _moles;
     },
 
-    checkHit: _checkHit,
+    getScore: function() {
+      return _score;
+    },
 
+    killMole: function() {
+      _setMolesToFalse();
+      _updateScore();
+    }
   };
 
 })();
 
 APP.view = (function($) {
 
-  var _render = function(moles) {
+  var _render = function(moles, score) {
     var $game = $('#game')
     $game.html('');
+
     for (var i = 0; i < moles.length; i++) {
       var div = $('<div class="molehole">');
       if (moles[i]) {
@@ -44,9 +52,19 @@ APP.view = (function($) {
       }
       $game.append(div);
     }
+
+    $("#score").text(score)
   };
 
+  var _clickListener = function(controller) {
+    $("#game").on("click", ".active", controller.clickHandler)
+  }
+
   return {
+    init: function(controller) {
+      _clickListener(controller)
+    },
+
     render: _render
   }
 
@@ -55,15 +73,30 @@ APP.view = (function($) {
 APP.controller = (function(model, view) {
 
   var _gameLoop = function() {
+    var counter =  0
+    var moles = model.getMoles();
+
     setInterval(function() {
-      var moles = model.getMoles();
-      view.render(moles);
-    }, 1000);
+
+      if(counter % 5 === 0) {
+        moles = model.getMoles();
+      }
+
+      view.render(moles, model.getScore());
+      counter++
+    }, 400);
   }
+
+
 
   return {
     init: function() {
+      view.init(this);
       _gameLoop();
+    },
+
+    clickHandler: function(e) {
+      model.killMole();
     }
   }
 
