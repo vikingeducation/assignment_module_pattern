@@ -1,7 +1,7 @@
 //whackamole
 
 
-var model = function() {
+var model = (function() {
 
   var init = function() {
     _buildMoles();
@@ -28,8 +28,21 @@ var model = function() {
 
   var _moles = [];
 
+  var score = 0;
+
+  var getScore = function(){
+    return score;
+  };
+
   var getMoles = function() {
     return _moles.slice();
+  };
+
+  var checkClick = function(id){
+    if(_moles[id].lit){
+      updateMoles();
+      score ++;
+    }
   };
 
   function Mole() {
@@ -41,53 +54,70 @@ var model = function() {
   return {
     newMole: Mole,
     getMoles: getMoles,
-    init: init
+    init: init,
+    updateMoles: updateMoles,
+    checkClick: checkClick,
+    getScore: getScore
   };
-};
+})();
 
-var view = (function(callbacks) {
-  var init = function() {
-    
+var view = (function() {
+  var _onClick;
+  var init = function(callback) {
+    _onClick = callback;
+    clickListener();
   };
 
-  var renderMoles = function(moles) {
+  var renderMoles = function(moles, score) {
+    $('#mole-container').empty();
     var mole;
     for (var i = 0; i < moles.length; i++) {
        mole = $('<div>')
         .attr('id', moles[i].id)
         .addClass('mole')
-        .appendTo($('body'));
+        .appendTo($('#mole-container'));
       if (moles[i].lit) {
         mole.css('background-color', moles[i].color);
       }
     }
+    $("#score").text("Your score: " + score);
+  };
+
+  var clickListener = function(){
+    $("#mole-container").on("click", ".mole", function(e){
+      var mole_id = e.target.id;
+      _onClick(mole_id);
+    })
   };
 
   return {
+    init: init,
     renderMoles: renderMoles
   };
-});
+})();
 
 var controller = (function(model, view) {
   var interval;
 
   var init = function() {
     model.init();
-  };
-
-
-  var startLoop = function() {
-    _tic();
+    view.init(_checkClick);
+    interval = setInterval(_tic, 1000);
   };
 
   var _tic = function() {
     model.updateMoles();
     var moles = model.getMoles();
-    view.renderMoles(moles);
+    var score = model.getScore();
+    view.renderMoles(moles, score);
+  };
+
+  var _checkClick = function(id){
+    model.checkClick(id);
   };
 
   return {
-    startLoop: startLoop
+    init: init
   };
 })(model, view);
 
