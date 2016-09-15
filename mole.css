@@ -1,0 +1,23 @@
+.mole {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.lit{
+  background-image: url("mole.jpeg");
+  background-size: contain;
+}
+
+#mole-container{
+  text-align: center;
+}
+
+#score{
+  text-align: center;
+}
+
