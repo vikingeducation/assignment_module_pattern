@@ -79,6 +79,9 @@ var view = (function() {
       if (moles[i].lit) {
         mole.addClass("lit");
       }
+      if(i===3){
+        $("#mole-container").append($("<br>"));
+      }
     }
     $("#score").text("Your score: " + score);
   };
