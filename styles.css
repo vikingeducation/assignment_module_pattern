@@ -1,0 +1,13 @@
+.board {
+  height: 100px;
+  width: 450px;
+  border: 1px solid black;
+}
+
+.hole {
+  width: 50px;
+  height: 50px;
+  margin: 1px;
+  display: inline-block;
+  border: 1px solid black;
+}
