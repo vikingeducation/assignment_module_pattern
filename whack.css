@@ -1,0 +1,15 @@
+#game {
+  height: 400px;
+  width: 400px;
+}
+
+.molehole {
+  background: black;
+  width: 100px;
+  height: 200px;
+  display: inline-block;
+}
+
+.active {
+  background: red;
+}
