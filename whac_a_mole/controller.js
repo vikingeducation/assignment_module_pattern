@@ -1,13 +1,14 @@
 var Controller = (function(Model, View) {
 
   var _playGame = function() {
-    View.render();
-    _clock ++;
-    if(_clock % 75 === 0) {
-      Model.removeRandomMole();
+    View.render(Model.moleLocations());
+    _clock++;
+    if (_clock % 50 === 0) {
       Model.placeMole();
     }
-
+    if (_clock % 90 === 0) {
+      Model.removeRandomMole();
+    }
   };
 
   var _setTheInterval = function() {
@@ -21,6 +22,7 @@ var Controller = (function(Model, View) {
       onHit: function(index) {
         Model.removeMole(index)
       },
+      gridSize: Model.getNumCells()
     })
   }
 
@@ -28,9 +30,12 @@ var Controller = (function(Model, View) {
 
 
   return {
-    // init: initializes model and view
-    // has a getMoleLocations method that calls model method
-    // userScore method that gets private variable _userScore
+    init: init
   }
 
 })(Model, View)
+
+
+$(document).ready(function() {
+  Controller.init();
+})

@@ -1,24 +1,26 @@
-var Model = (function(){
+var Model = (function() {
 
   var _grid = [];
+  var cells = 8;
 
   function moleLocations() {
     var locations = []
-    for(var i = 0; i < _grid.length; i++) {
-      if (_grid[i] === "MOLE") {locations.push(i);
+    for (var i = 0; i < _grid.length; i++) {
+      if (_grid[i] === "MOLE") {
+        locations.push(i);
       }
     }
     return locations
   };
 
-  var placeMole = function(){
-    _grid[Math.floor(Math.random() * _grid.length)] = "MOLE"; 
+  var placeMole = function() {
+    _grid[Math.floor(Math.random() * cells)] = "MOLE";
   };
 
   var removeRandomMole = function() {
     var locations = moleLocations();
     var length = locations.length;
-    if(length > 0) {
+    if (length > 0) {
       _grid[locations[Math.floor(Math.random() * length)]] = null;
     }
   };
@@ -28,7 +30,7 @@ var Model = (function(){
   };
 
   var setNullGridVals = function() {
-    for(var i = 0; i < 8; i+=1) {
+    for (var i = 0; i < cells; i += 1) {
       _grid[i] = null;
     }
   };
@@ -36,8 +38,10 @@ var Model = (function(){
 
   return {
     moleLocations: moleLocations,
-    placeMole: placeMole;
-    removeMole: removeMole;
+    placeMole: placeMole,
+    removeMole: removeMole,
+    removeRandomMole: removeRandomMole,
+    getNumCells: function(){ return cells },
     init: function() {
       setNullGridVals();
     }
