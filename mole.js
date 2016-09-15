@@ -51,7 +51,7 @@ var gameModule = (function(moleModule, $) {
   };
 
   var updateScore = function(){
-    $('#score').html("Your score is: " + score);
+    $('#score').html("Your score: " + score);
   }
 
   return {
