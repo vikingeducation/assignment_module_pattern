@@ -1,17 +1,17 @@
 .board {
   height: 100px;
-  width: 450px;
-  border: 1px solid black;
+  width: 700px;
 }
 
 .hole {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   margin: 1px;
   display: inline-block;
   border: 1px solid black;
 }
 
 .mole {
-  background-color: green;
+  background-image: url("mole.png");
+  background-size: cover;
 }

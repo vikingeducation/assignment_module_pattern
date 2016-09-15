@@ -1,8 +1,15 @@
-var moleModule = function() {
-  
-};
+var moleModule = (function() {
+  var mole = function() {
+    var rand = Math.floor(Math.random() * 8);
+    this.home = rand;
+  };
 
-var gameModule = (function($) {
+  return {
+    mole: mole
+  }
+})();
+
+var gameModule = (function(moleModule, $) {
 
   var score = 0;
 
@@ -16,9 +23,10 @@ var gameModule = (function($) {
   };
 
   var addMole = function() {
-    var rand = Math.floor(Math.random() * 8);
+    var mole = new moleModule.mole();
+    console.log(mole);
     $('.mole').removeClass('mole');
-    $('[data-id=' + rand + ']').addClass('mole');
+    $('[data-id=' + mole.home + ']').addClass('mole');
   };
 
   var tic = function() {
@@ -55,7 +63,7 @@ var gameModule = (function($) {
     }
   }
 
-})($);
+})(moleModule, $);
 
 
 
