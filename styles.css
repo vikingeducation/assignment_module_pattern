@@ -1,0 +1,24 @@
+.board {
+  height: 340px;
+  width: 700px;
+  margin: 0 auto;
+}
+
+.hole {
+  width: 160px;
+  height: 160px;
+  margin: 1px;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.mole {
+  background-image: url("mole.png");
+  background-size: cover;
+  background-position: center;
+}
+
+body{
+  text-align: center;
+}
