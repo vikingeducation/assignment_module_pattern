@@ -1,5 +1,6 @@
+var MD = MD || {}
 
-var Module = (function() {
+MD.Module = (function(Module2) {
 
   var _hidden = "hidden";
   var _hiddenMethod = function() {
@@ -13,9 +14,10 @@ var Module = (function() {
   return {
     getVar: (function(){ return public; })(),
     setVar: function(val){ return public = val; },
-    method: publicMethod
+    method: publicMethod,
+    method2: Module2.method2
   }
-})();
+})(MD.Module2);
 
 
 // console.log(Module.getVar)

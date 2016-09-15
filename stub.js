@@ -1,14 +1,16 @@
-var Module2 = (function() {
+var MD = MD || {}
+
+MD.Module2 = (function() {
 
   var stub = {};
 
-  var _hidden = "hidden";
+  var _hidden = "hidden2";
   var _hiddenMethod = function() {
     return "I am a hidden function";
   }
-  var public = "public";
-  var publicMethod = function() {
-    return "I access " + public + " and " + _hidden;
+  var public = "public2";
+  var publicMethod2 = function() {
+    return "I access " + _hidden + " and " + public;
   }
 
   stub.getVar =
@@ -19,7 +21,7 @@ var Module2 = (function() {
   stub.setVar = function(val) {
     return public = val;
   }
-  stub.method = publicMethod
+  stub.method2 = publicMethod2;
 
   return stub;
 })();
