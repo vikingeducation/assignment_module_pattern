@@ -7,6 +7,9 @@ var Mole = (function(){
   var randomMole = function(){
     var moleIndex = Math.ceil(Math.random() * 7);
     var mole = moles[moleIndex];
+    //mole is a function definition
+    //mole.id is undefined
+    console.log(mole)
     return mole.id;
   }
 
@@ -17,7 +20,7 @@ var Mole = (function(){
   var generateMoles = function(){
     for(var i = 1; i <= 8; i++){
       var m = new mole(i);
-      moles.push(mole);
+      moles.push(m);
     }
   }
 

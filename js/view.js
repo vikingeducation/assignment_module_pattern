@@ -8,11 +8,14 @@ var View = (function(){
   }
 
   var showMole = function(id){
-    $(".mole").hide();
+    $(".mole").css("visibility", "hidden");
     $(".mole").off("click");
-    
-    $("#mole" + id).click(_whackMole);
-    $("#mole" + id).show();
+    //id is undefined
+    $("#mole" + id).click(function(event){
+      _whackMole(event);
+      $("#mole" + id).css("visibility", "hidden");
+    })
+    $("#mole" + id).css("visibility", "visible");
   }
 
   var showScore = function(score){
