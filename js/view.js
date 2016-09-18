@@ -22,6 +22,8 @@ var View = (function(){
     $("#score").text(score);
   }
 
+  
+
 
   return {
     init: init,

@@ -2,17 +2,18 @@ var Controller = (function(View, Mole){
   
   var whackMole = function(){
     Mole.incrementScore();
+    View.showScore(Mole.score());
   }
 
   var init = function(){
     Mole.init();
     //calls view.init
     //pass any callbacks the view might need to it's init function
-    
+
     View.init(whackMole);
 
     //set the mole showing interval
-    setInterval(play, 3000)
+    setInterval(play, 1000);
   };
 
   var play = function(){
