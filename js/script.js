@@ -1,8 +1,8 @@
 var Module = (function(){
 
-  var hiddenVar = 4;
+  var _hiddenVar = 4;
 
-  var hiddenMethod = function(){
+  var _hiddenMethod = function(){
     console.log("I'm hidden from sight");
   }
 
@@ -19,8 +19,8 @@ var Module = (function(){
 
     publicMethod: function(){
       console.log("IM SO PUBLIC AND OUT IN THE OPEN");
-      console.log("I WILL HELP THE PRIVATE METHOD TALK NOW");
-      hiddenMethod();
+      console.log("I WILL HELP THE PRIVATE METHOD TALK on the next line");
+      _hiddenMethod();
     }
   }
 
