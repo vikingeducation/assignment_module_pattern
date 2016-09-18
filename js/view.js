@@ -19,10 +19,16 @@ var View = (function(){
   }
 
   var showScore = function(score){
-    $("#score").text(score);
+    $("#score").text("Score: " + score);
   }
 
-  
+  var whackMessage = function(){
+    $("#ouch").text("Ouch");
+  }
+
+  var messageOff = function(){
+    $("#ouch").text("");
+  }
 
 
   return {
