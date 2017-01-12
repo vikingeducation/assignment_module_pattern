@@ -2,24 +2,38 @@
 
 var MOLE = MOLE || {};
 
-MOLE.Controller = (function(View) {
+MOLE.Controller = (function(View, Game) {
 
   var init = function() {
     View.init();
+    Game.init();
+    setInterval(gameLoop, Math.random() * 3000 + 1000)
   };
 
+  var updateMole = function(id) {
+    Game.removeMole(id);
+    View.clearMole(id);
+  }
+  
+  var gameLoop = function() {
+    var currentMole = Game.addMole();
+    if (currentMole) {
+      View.renderMole(currentMole.id);
+      setTimeout(updateMole(currentMole.id), 3000);
+    }
+  }
 
 
   return {
     init: init
   };
 
-})(MOLE.View);
+})(MOLE.View, MOLE.Game);
 
 
 
 $(function() {
-	MOLE.Controller.init();
+  MOLE.Controller.init();
 });
 
 // setInterval(moleAppearance, random 3-7 sec)

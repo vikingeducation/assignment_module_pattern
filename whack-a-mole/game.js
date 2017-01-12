@@ -2,12 +2,48 @@
 
 var MOLE = MOLE || {};
 
-MOLE.Game = (function(Config) {
+MOLE.Game = (function(Config, Mole) {
+  var moleArray;
 
-  // array = use config [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]
+  var init = function() {
+    moleArray = Array(Config.boardLength).fill(undefined);
+  };
+
+  var _checkForUndefined = function(element, index, array) {
+    return element === undefined;
+  };
+
+  var addMole = function() {
+    if (moleArray.some(_checkForUndefined)){
+      do {
+        var moleHole = Math.floor(Math.random() * 8);
+        console.log(moleHole)
+        console.log(moleArray[moleHole])
+      } while (moleArray[moleHole])
+      var newMole = Mole.createMole(moleHole);
+      moleArray[moleHole] = newMole;
+      return newMole;
+    }
+    return false;
+  };
+
+  var getMoleArray = function() {
+    return moleArray;
+  }
+
+  var removeMole = function(num) {
+    moleArray[num] = undefined;
+  }
+
+  return {
+    init: init,
+    addMole: addMole,
+    moleArray: getMoleArray,
+    removeMole: removeMole
+  }
 
 
-})(MOLE.Config);
+})(MOLE.Config, MOLE.Mole);
 
 
 // - moles array collection
