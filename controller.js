@@ -10,12 +10,14 @@ WHACK_MOLE.Controller = (function(View, Model) {
 
   var clickHandler = function clickHandler(e) {
     if (View.checkMatch(e.target.getAttribute("id"))) {
-      console.log("Hit!")
+      View.unflash();
+      Model.increaseScore();
+      View.renderScore(Model.getScore());
     }
   }
 
   var init = function init() {
-    View.init(clickHandler);
+    View.init(clickHandler, Model.getScore());
     setInterval(gameLoop, 1000);
   }
 

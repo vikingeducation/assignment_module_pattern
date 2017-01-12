@@ -3,7 +3,8 @@ var WHACK_MOLE = WHACK_MOLE || {};
 WHACK_MOLE.View = (function() {
   var gameWrapper = document.getElementsByTagName('whack-mole')[0];
   var lastFlashed,
-      squares;
+      squares,
+      scoreHeader;
 
   var renderRow = function renderRow(size) {
     size = size || 8;
@@ -19,14 +20,31 @@ WHACK_MOLE.View = (function() {
 
   }
 
+  var renderScore = function renderScore(score) {
+    scoreHeader = scoreHeader || addScoreHeader(score);
+
+    scoreHeader.text('Score: ' + score);
+  }
+
+  var addScoreHeader = function addScoreHeader(score){
+    scoreHeader = $('<h2>').text('Score: ' + score);
+    $(gameWrapper).append(scoreHeader);
+
+    return scoreHeader;
+  }
+
   var flash = function flash() {
-    if (lastFlashed) lastFlashed.removeClass('flash');
+    unflash();
 
     var randI = Math.floor(Math.random() * squares.length);
 
     lastFlashed = squares.eq(randI).addClass('flash');
 
     return lastFlashed;
+  }
+
+  var unflash = function unflash() {
+    if (lastFlashed) lastFlashed.removeClass('flash');
   }
 
   var checkMatch = function checkMatch(targetID) {
@@ -37,14 +55,17 @@ WHACK_MOLE.View = (function() {
     $(gameWrapper).on('click', '.square', clickHandler)
   }
 
-  var init = function init(clickHandler, size) {
+  var init = function init(clickHandler, score, size) {
     renderRow(size);
-    addEventListener(clickHandler); 
+    renderScore(score);
+    addEventListener(clickHandler);
   }
 
   return {
             init: init,
             flash: flash,
+            unflash: unflash,
+            renderScore: renderScore,
             checkMatch: checkMatch
          }
 })();
