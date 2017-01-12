@@ -1,6 +1,8 @@
 'use strict';
 
-var SecondModule = (function() {
+var APP = APP || {};
+
+APP.SecondModule = (function() {
 
   var _darkBunny = "I've eaten all my friends.";
   var lightBunny = 'eats carrots';

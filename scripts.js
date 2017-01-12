@@ -1,6 +1,8 @@
 'use strict';
 
-var RevealingModule = (function() {
+var APP = APP || {};
+
+APP.RevealingModule = (function(bunnyMod) {
   var _hiddenVar = "some hidden value";
   var _hiddenMethod = function() {
     _hiddenVar += " has been changed by _hiddenMethod";
@@ -19,12 +21,23 @@ var RevealingModule = (function() {
     return _hiddenMethod();
   };
 
+  var revealingDarkBunny = function(val) {
+    var darkBunnySayings = bunnyMod.darkBunnySpotlight(val);
+    return darkBunnySayings;
+  };
+
   return {
+    revealingDarkBunny: revealingDarkBunny,
     publicGetter: publicGetter,
     publicSetter: publicSetter,
     publicMethod: publicMethod
   };
-})();
+})(APP.SecondModule);
+
+
+
+
+// Stub
 
 var StubModule = (function() {
   var _hiddenVar = "some hidden value";
