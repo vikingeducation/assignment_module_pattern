@@ -8,6 +8,9 @@ MOLES.view = function() {
       $('.board').append($('<div class="mole">'));
     }
   };
+  exports.toggleMole = function(moleIndex) {
+    $('.mole:nth-child('+moleIndex+')').toggleClass('active');
+  };
 
   return exports;
 
