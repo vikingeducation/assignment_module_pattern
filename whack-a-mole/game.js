@@ -17,8 +17,8 @@ MOLE.Game = (function(Config, Mole) {
     if (moleArray.some(_checkForUndefined)){
       do {
         var moleHole = Math.floor(Math.random() * 8);
-        console.log(moleHole)
-        console.log(moleArray[moleHole])
+        // console.log(moleHole)
+        // console.log(moleArray[moleHole])
       } while (moleArray[moleHole])
       var newMole = Mole.createMole(moleHole);
       moleArray[moleHole] = newMole;
