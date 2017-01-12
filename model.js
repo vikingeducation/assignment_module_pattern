@@ -4,6 +4,7 @@ MOLES.model = function(moleQuantity){
   var exports = {};
 
   var moles = moleModule.makeMoles(moleQuantity);
+  exports.moleList = moles
   exports.score = 1;
   exports.multiplier = 1;
 
@@ -31,7 +32,11 @@ MOLES.model = function(moleQuantity){
   };
 
   exports.incrementScore = function(){
-    exports.score += multiplier;
+    exports.score += exports.multiplier;
+  };
+
+  exports.incrementMultiplier = function(){
+    exports.multiplier += 1;
   };
 
   exports.resetMultiplier = function(){
