@@ -4,18 +4,19 @@ MOLES.model = function(moleQuantity){
   var exports = {};
 
   var moles = moleModule.makeMoles(moleQuantity);
-  exports.moleList = moles
+  exports.moleList = moles;
   exports.score = 1;
   exports.multiplier = 1;
 
   exports.pickMole = function(){
     var rand = Math.floor(Math.random() * moles.length);
-    return moles[rand];
+    return rand;
   };
 
   exports.revealMole = function(){
-    var mole = exports.pickMole();
-    mole.active = true;
+    var index = exports.pickMole();
+    moles[index].active = true;
+    return index;
   };
 
   exports.moleStatus = function(){
@@ -26,7 +27,7 @@ MOLES.model = function(moleQuantity){
     return status;
   };
 
-  exports.moleDeactivate = function(number){
+  exports.deactivateMole = function(number){
     var mole = moles[number];
     mole.active = false;
   };

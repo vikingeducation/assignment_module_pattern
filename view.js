@@ -12,8 +12,15 @@ MOLES.view = function() {
     $('.board').on("click", ".inactive", callbacks.clickInactive)
 
   };
-  exports.toggleMole = function(moleIndex) {
-    $('.mole:nth-child('+(moleIndex + 1)+')').toggleClass('active inactive');
+  exports.activateMole = function(moleIndex) {
+    $('.mole:nth-child('+(moleIndex + 1)+')')
+      .addClass('active')
+      .removeClass('inactive');
+  };
+  exports.deactivateMole = function(moleIndex) {
+    $('.mole:nth-child('+(moleIndex + 1)+')')
+      .addClass('inactive')
+      .removeClass('active');
   };
 
   exports.updateScore = function(score){
