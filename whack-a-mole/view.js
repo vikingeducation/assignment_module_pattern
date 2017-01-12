@@ -31,7 +31,7 @@ MOLE.View = (function(Config) {
 
   var clearMole = function(id) {
     var $hole = $('.mole-hole').filter("[data-id='"+ id + "']");
-    // $hole.children().remove();
+    $hole.children().remove();
   }
 
   return {

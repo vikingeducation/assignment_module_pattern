@@ -14,7 +14,7 @@ MOLE.Controller = (function(View, Game) {
   var updateMole = function(id) {
     console.log('in update')
     Game.removeMole(id);
-    // View.clearMole(id);
+    View.clearMole(id);
   }
   
   var gameLoop = function() {
@@ -22,7 +22,9 @@ MOLE.Controller = (function(View, Game) {
     var currentMole = Game.addMole();
     if (currentMole) {
       View.renderMole(currentMole.id);
-      setTimeout(updateMole(currentMole.id), 5000);
+      setTimeout(function() {
+        updateMole(currentMole.id)
+      }, 5000);
     }
   }
 
