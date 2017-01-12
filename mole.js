@@ -1,21 +1,21 @@
 var moleModule = (function(){
+  'use strict';
 
   function Mole(number){
-    this.id = number
-    this.active = false
+    this.id = number;
+    this.active = false;
   }
 
   var makeMoles =  function(number){
-    var moleArray = []
+    var moleArray = [];
     for(var i = 0; i < number; i++){
-      moleArray.push(new Mole(i))
+      moleArray.push(new Mole(i));
     }
-    return moleArray
-  }
+    return moleArray;
+  };
 
   return {
     Mole: Mole,
     makeMoles: makeMoles
-  } 
-})()
-
+  } ;
+})();

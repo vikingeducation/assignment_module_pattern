@@ -1,38 +1,42 @@
-model = {
-  moles: moleModule.makeMoles(8),
-  score: 1,
-  multiplier: 1,
+var MOLES = MOLES || {};
 
-  pickMole: function(){
-    var rand = Math.floor(Math.random() * model.moles.length);
-    return model.moles[rand];
-  },
+MOLES.model = function(moleQuantity){
+  var exports = {};
 
-  revealMole: function(){
-    var mole = model.pickMole();
+  var moles = moleModule.makeMoles(moleQuantity);
+  exports.score = 1;
+  exports.multiplier = 1;
+
+  exports.pickMole = function(){
+    var rand = Math.floor(Math.random() * moles.length);
+    return moles[rand];
+  };
+
+  exports.revealMole = function(){
+    var mole = exports.pickMole();
     mole.active = true;
-  },
+  };
 
-  moleStatus: function(){
-    var status = []
-    for(var i = 0; i < model.moles.length; i++){
-      status.push(model.moles[i].active);
+  exports.moleStatus = function(){
+    var status = [];
+    for(var i = 0; i < moles.length; i++){
+      status.push(moles[i].active);
     }
-    return status
-  },
+    return status;
+  };
 
-  moleDeactivate: function(number){
-    var mole = model.moles[number]
-    mole.active = false
-  },
+  exports.moleDeactivate = function(number){
+    var mole = moles[number];
+    mole.active = false;
+  };
 
-  incrementScore: function(){
-    model.score += multiplier
-  }
+  exports.incrementScore = function(){
+    exports.score += multiplier;
+  };
 
-  resetMultiplier: function(){
-    model.multiplier = 1 
-  }
+  exports.resetMultiplier = function(){
+    exports.multiplier = 1;
+  };
 
-
-}
+  return exports;
+};
