@@ -1,0 +1,16 @@
+whack-mole {
+  /*height: 20vh;
+  width: 30vh;*/
+}
+
+whack-mole .square {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  background-color: grey;
+  border: 1px solid silver;
+}
+
+whack-mole .flash {
+  background-color: #FF69B4;
+}
