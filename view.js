@@ -10,7 +10,7 @@ WHACK_MOLE.View = (function() {
     var square;
 
     for(var i = 0; i < size; i++) {
-      square = $('<div>').addClass('square');
+      square = $('<div>').addClass('square').attr("id", i);
 
       $(gameWrapper).append(square);
     }
@@ -29,12 +29,22 @@ WHACK_MOLE.View = (function() {
     return lastFlashed;
   }
 
-  var init = function init(size) {
+  var checkMatch = function checkMatch(targetID) {
+    return targetID === lastFlashed.attr("id");
+  }
+
+  var addEventListener = function addEventListener(clickHandler) {
+    $(gameWrapper).on('click', '.square', clickHandler)
+  }
+
+  var init = function init(clickHandler, size) {
     renderRow(size);
+    addEventListener(clickHandler); 
   }
 
   return {
             init: init,
-            flash: flash
+            flash: flash,
+            checkMatch: checkMatch
          }
 })();
