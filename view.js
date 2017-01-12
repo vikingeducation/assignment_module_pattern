@@ -45,10 +45,14 @@ WHACK_MOLE.View = (function() {
 
   var unflash = function unflash() {
     if (lastFlashed) lastFlashed.removeClass('flash');
+    lastFlashed = null;
   }
 
   var checkMatch = function checkMatch(targetID) {
-    return targetID === lastFlashed.attr("id");
+    if (lastFlashed) {
+      return targetID === lastFlashed.attr("id");
+    }
+    return false;
   }
 
   var addEventListener = function addEventListener(clickHandler) {
