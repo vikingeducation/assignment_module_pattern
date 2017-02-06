@@ -1,0 +1,15 @@
+* {
+  text-align: center;
+}
+
+.hole {
+  width: 5em;
+  height: 5em;
+  border: 1px solid black;
+  margin: 1em;
+  display: inline-block;
+}
+
+.mole {
+  background-color: black
+}
