@@ -1,4 +1,6 @@
-var moduleOne = (function(){
+var MODULE = MODULE || {};
+
+MODULE.One = (function(){
   var stub = {};
 
   var hiddenVar = "im hiding";
