@@ -1,0 +1,11 @@
+.mole {
+  display: inline-block;
+  border: 3px solid gray;
+  height: 100px;
+  width: 100px;
+}
+
+.lit {
+  background-color: yellow;
+  cursor: pointer;
+}
