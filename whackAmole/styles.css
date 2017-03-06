@@ -7,6 +7,10 @@
   background-color: black;
 }
 
+#active-mole {
+  background-color: green;
+}
+
 h1 {
   text-align: center;
 }
