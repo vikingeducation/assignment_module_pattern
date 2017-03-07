@@ -1,3 +1,3 @@
 $(document).ready(function(){
-  WAM.MainModule.init();
+  WAM.Main.init();
 });

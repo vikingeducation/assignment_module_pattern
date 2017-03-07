@@ -1,20 +1,22 @@
 var WAM = WAM || {};
 
-WAM.MainModule = (function(){
-  var _interval;
+WAM.Main = (function(){
+  console.log(WAM.Mole)
+  var _interval,
+  _moleHoles = 8,
+  _score = 0,
+  _allMoles = [],
+  _gameTimer = 20; //20 second game length
 
-  var _moleHoles = 8;
 
-  //20 second game length
-  var _gameTimer = 20;
-  var _score = 0;
+  // var _buildMoles = function()}{}
 
 
 
   var _gameLoop = function(){
     _interval = setInterval(function(){
       _gameTimer--;
-        console.log(_gameTimer)
+        // console.log(_gameTimer)
     }, 1000);
 
     if (_gameTimer === 0) {
@@ -23,7 +25,8 @@ WAM.MainModule = (function(){
   };
 
   var init = function(){
-    _gameLoop();
+    WAM.Mole.init();
+    // _gameLoop();
   };
 
   var _stopGame = function(){

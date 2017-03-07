@@ -3,7 +3,7 @@
   height: 100px;
   border: 44px solid brown;
   border-radius: 100%;
-
+  display: inline-block;
   background-color: black;
 }
 
