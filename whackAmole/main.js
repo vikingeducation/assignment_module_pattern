@@ -8,10 +8,7 @@ WAM.Main = (function(){
   _allMoles = [],
   _gameTimer = 20; //20 second game length
 
-
   // var _buildMoles = function()}{}
-
-
 
   var _gameLoop = function(){
     _interval = setInterval(function(){

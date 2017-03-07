@@ -10,7 +10,6 @@ WAM.Mole = (function(){
     this.points = 100 / this.seconds;
     this.visible = false;
     this.alive = true;
-
     this.domElement = domElement;
   };
 
@@ -19,10 +18,9 @@ WAM.Mole = (function(){
   var init = function(moleCount, parentEl){
     var moleCount = 8, parentEl = $('#game-board');
     _createMoles(moleCount);
-    _AddMoleElementsToDOM(parentEl);
+    _addMoleElementsToDOM(parentEl);
   };
 
-  //add mole DOM elements as children
   var _createMoles = function(moleCount){
     for (var i = 0; i < moleCount; i++){
       var domEl = $("<div>").addClass("mole-hole")
@@ -33,14 +31,16 @@ WAM.Mole = (function(){
     }
   };
 
-  var _AddMoleElementsToDOM = function(parentEl){
+  var _addMoleElementsToDOM = function(parentEl){
     allMoles.forEach(function(mole){
       $(parentEl).append(mole.domElement);
     });
   };
 
   Mole.prototype.render = function(){
-    // this.seconds--;
+    if(this.alive && this.visible) {
+      this.domElement.addClass()
+    }
   };
 
 
