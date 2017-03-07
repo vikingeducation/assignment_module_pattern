@@ -19,6 +19,7 @@ WAM.Mole = (function(){
     var moleCount = 8, parentEl = $('#game-board');
     _createMoles(moleCount);
     _addMoleElementsToDOM(parentEl);
+    _addClickListeners();
   };
 
   var _createMoles = function(moleCount){
@@ -37,9 +38,20 @@ WAM.Mole = (function(){
     });
   };
 
+  var _addClickListeners = function(){
+    $("#game-board").on("click", ".mole-hole", function(){
+      var moleId = $(this).attr('id'),
+          mole = allMoles[moleId];
+
+      if (this.alive && this.visible) {
+        (this.visible = false )
+      }
+    });
+  }
+
   Mole.prototype.render = function(){
     if(this.alive && this.visible) {
-      this.domElement.addClass()
+      this.domElement.addClass("active-mole");
     }
   };
 

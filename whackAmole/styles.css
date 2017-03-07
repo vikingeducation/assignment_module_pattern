@@ -20,6 +20,10 @@
   background-color: #009933; /* green grass */
 }
 
+* {
+  cursor: crosshair;
+}
+
 h1 {
   text-align: center;
 }

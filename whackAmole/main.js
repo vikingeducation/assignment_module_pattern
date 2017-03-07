@@ -1,7 +1,6 @@
 var WAM = WAM || {};
 
-WAM.Main = (function(){
-  console.log(WAM.Mole)
+WAM.Main = (function($){
   var _interval,
   _moleHoles = 8,
   _score = 0,
@@ -9,6 +8,11 @@ WAM.Main = (function(){
   _gameTimer = 20; //20 second game length
 
   // var _buildMoles = function()}{}
+
+  // var _moleClickListeners = function(){
+
+  // }
+
 
   var _gameLoop = function(){
     _interval = setInterval(function(){
@@ -30,8 +34,6 @@ WAM.Main = (function(){
     console.log("game over");
     clearInterval(_interval);
   };
-
-
 
   return {
     init: init
