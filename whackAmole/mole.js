@@ -44,8 +44,9 @@ WAM.Mole = (function(){
       var moleId = $(this).attr('id'),
           mole = allMoles[moleId];
 
-      if (this.alive && this.visible) {
-        (this.visible = false )
+      if (mole.alive && mole.visible) {
+        mole.visible = false;
+        mole.domElement.removeClass("active-mole");
       }
     });
   }
