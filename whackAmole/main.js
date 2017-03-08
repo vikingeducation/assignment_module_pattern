@@ -2,17 +2,20 @@ var WAM = WAM || {};
 
 WAM.Main = (function(){
   var _interval,
-  _moleHoles = 8,
-  score = 0,
-  _allMoles = [],
-  _gameTimer = 20; //20 second game length
-  _gameTimerElement = $("#time-left");
-  _scoreElement = $("#score");
+      moleCount = 8,
+      score = 0,
+      _allMoles = [],
+      _gameTimer = 20, //20 second game length
+      _gameTimerElement = $("#time-left"),
+      _scoreElement = $("#score"),
+      _gameBoardElement = $('#game-board');
 
 
   var _stopGame = function(){
     console.log("game over");
     clearInterval(_interval);
+    $(".mole-hole").removeClass(".active-mole")
+                   .off();
   };
 
   var _renderPoints = function(domElement){
@@ -43,7 +46,7 @@ WAM.Main = (function(){
   };
 
   var init = function(){
-    WAM.Mole.init();
+    WAM.Mole.init(moleCount, _gameBoardElement);
     _play();
   };
 
@@ -52,7 +55,7 @@ WAM.Main = (function(){
   };
 
   return {
-    init: init, updateScore: updateScore
+    init: init, updateScore: updateScore, moleCount: moleCount
   };
 
 }());
