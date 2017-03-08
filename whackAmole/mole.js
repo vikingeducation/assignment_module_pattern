@@ -15,12 +15,13 @@ WAM.Mole = (function(){
 
   var allMoles = [];
 
-  var init = function(moleCount, parentEl){
-    var moleCount = 8, parentEl = $('#game-board');
-    _createMoles(moleCount);
-    _addMoleElementsToDOM(parentEl);
-    _addClickListeners();
+  var randomMole = function(){
+    var min = 0,
+        max = WAM.Mole.allMoles.length,
+        moleIndex = WAM.getRandom(min, max);
+    return allMoles[moleIndex];
   };
+
 
   var _createMoles = function(moleCount){
     for (var i = 0; i < moleCount; i++){
@@ -51,20 +52,39 @@ WAM.Mole = (function(){
 
   Mole.prototype.render = function(){
     if(this.alive && this.visible) {
+      console.log(this)
       this.domElement.addClass("active-mole");
+    } else {
+      this.domElement.removeClass("active-mole");
     }
   };
 
-
+  updateMoles = function(){
+    allMoles.forEach(function(mole){
+      mole.render();
+      mole.tic();
+    })
+  };
 
   Mole.prototype.tic = function(){
     this.seconds--;
   };
 
+  var init = function(moleCount, parentEl){
+    var moleCount = 8, parentEl = $('#game-board');
+    _createMoles(moleCount);
+    _addMoleElementsToDOM(parentEl);
+    _addClickListeners();
+
+    randomMole().visible = true;
+  };
+
   return {
     Mole: Mole,
     init: init,
-    allMoles: allMoles
+    allMoles: allMoles,
+    randomMole: randomMole,
+    updateMoles: updateMoles
   };
 
 }());

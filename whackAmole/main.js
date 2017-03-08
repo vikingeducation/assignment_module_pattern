@@ -7,32 +7,32 @@ WAM.Main = (function($){
   _allMoles = [],
   _gameTimer = 20; //20 second game length
 
-  // var _buildMoles = function()}{}
 
-  // var _moleClickListeners = function(){
-
-  // }
-
-
-  var _gameLoop = function(){
-    _interval = setInterval(function(){
-      _gameTimer--;
-        // console.log(_gameTimer)
-    }, 1000);
-
+  var _render = function(){
+    WAM.Mole.updateMoles();
     if (_gameTimer === 0) {
       _stopGame();
+    } else {
+      _gameTimer--;
     }
   };
 
+
   var init = function(){
     WAM.Mole.init();
+    _render();
     // _gameLoop();
   };
 
   var _stopGame = function(){
     console.log("game over");
     clearInterval(_interval);
+  };
+
+  var _gameLoop = function(){
+    _interval = setInterval(function(){
+      _render();
+    }, 1000);
   };
 
   return {
