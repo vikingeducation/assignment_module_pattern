@@ -68,22 +68,24 @@ WAM.Mole = (function(){
   };
 
   updateMoles = function(){
-    forceActiveMole();
-    _moreMoles();
+    // _moreMoles();
+    _forceActiveMole();
     moles.allMoles.forEach(function(mole){
+      mole.showSelf()
       mole.render();
     });
   };
 
-  // var _moreMoles = function(){
-  //   var chance = WAM.percentChance(10);
+  Mole.prototype.showSelf = function(){
+    var chance = WAM.percentChance(5);
+    if (chance) {
+      this.visible = true;
+      this.activeMoleCount++;
+    }
 
-  //   if (chance) {
+  };
 
-  //   }
-  // };
-
-  var forceActiveMole = function(){
+  var _forceActiveMole = function(){
     var mole = randomMole();
 
     if (moles.activeMoleCount < 1) {
@@ -96,13 +98,12 @@ WAM.Mole = (function(){
     _createMoles(moleCount);
     _addMoleElementsToDOM(parentEl);
     _addMoleClickListeners();
-    forceActiveMole();
+    _forceActiveMole();
   };
 
   return {
     init: init,
     updateMoles: updateMoles,
-    moles: moles
   };
 
 }());

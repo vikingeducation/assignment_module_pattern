@@ -13,9 +13,8 @@ WAM.Main = (function(){
 
   var _stopGame = function(){
     console.log("game over");
-    clearInterval(_interval);
     $(".mole-hole").removeClass(".active-mole")
-                   .off();
+    clearInterval(_interval);
   };
 
   var _renderPoints = function(domElement){
