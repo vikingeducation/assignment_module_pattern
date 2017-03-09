@@ -1,6 +1,6 @@
 var WAM = WAM || {};
 
-WAM.Mole = (function(){
+WAM.Mole = (function($, MainModule){
   var moles = {
     allMoles: [],
     activeMoleCount: 0
@@ -31,7 +31,7 @@ WAM.Mole = (function(){
     }
   };
 
-  var randomMole = function(){
+  var _randomMole = function(){
     var minIndex = 0,
         maxIndex = WAM.Main.moleCount - 1;
     moleIndex = WAM.getRandom(minIndex, maxIndex);
@@ -68,7 +68,6 @@ WAM.Mole = (function(){
   };
 
   updateMoles = function(){
-    // _moreMoles();
     _forceActiveMole();
     moles.allMoles.forEach(function(mole){
       mole.showSelf()
@@ -82,11 +81,10 @@ WAM.Mole = (function(){
       this.visible = true;
       this.activeMoleCount++;
     }
-
   };
 
   var _forceActiveMole = function(){
-    var mole = randomMole();
+    var mole = _randomMole();
 
     if (moles.activeMoleCount < 1) {
       mole.visible = true;
@@ -106,4 +104,4 @@ WAM.Mole = (function(){
     updateMoles: updateMoles,
   };
 
-}());
+}($, WAM.Main));

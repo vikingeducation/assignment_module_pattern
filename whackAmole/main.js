@@ -1,6 +1,6 @@
 var WAM = WAM || {};
 
-WAM.Main = (function(){
+WAM.Main = (function($, MoleModule){
   var _interval,
       moleCount = 8,
       score = 0,
@@ -26,7 +26,7 @@ WAM.Main = (function(){
   }
 
   var _renderAll = function(){
-    WAM.Mole.updateMoles();
+    MoleModule.updateMoles();
     _renderTimeLeft(_gameTimerElement);
 
     if (_gameTimer === 0) {
@@ -45,7 +45,7 @@ WAM.Main = (function(){
   };
 
   var init = function(){
-    WAM.Mole.init(moleCount, _gameBoardElement);
+    MoleModule.init(moleCount, _gameBoardElement);
     _play();
   };
 
@@ -54,7 +54,9 @@ WAM.Main = (function(){
   };
 
   return {
-    init: init, updateScore: updateScore, moleCount: moleCount
+    init: init,
+    updateScore: updateScore,
+    moleCount: moleCount
   };
 
-}());
+}($, WAM.Mole));
