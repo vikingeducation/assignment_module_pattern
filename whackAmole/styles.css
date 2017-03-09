@@ -1,0 +1,29 @@
+.mole-hole {
+  width: 80px;
+  height: 80px;
+  border: 10px solid brown;
+  margin: 15px;
+  border-radius: 100%;
+  display: inline-block;
+  background-color: black;
+}
+
+.active-mole {
+  background-image: url("./mole.jpg");
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+}
+
+#game-board {
+  display: table;
+  background-color: #009933; /* green grass */
+}
+
+* {
+  cursor: crosshair;
+}
+
+h1 {
+  text-align: center;
+}
