@@ -1,27 +1,29 @@
-var RMP = (function() {
-  var _secret = 'secret message';
-  var _secretMethod = function() {
+var Stub = (function() {
+
+  // private since we're not including it in our returned stub object
+  var secret = 'secret message';
+  var secretMethod = function() {
     return 'Activate ' + _secret;
   }
+  var stub = {};
+  // public stuff
   var public = 'public message';
-  var getPublicMessage = function() {
-    return public
+  stub.getPublicMessage = function() {
+    return public;
   }
-  var setPublicMessage = function(msg) {
+  stub.setPublicMessage = function(msg) {
     return public = msg;
   }
 
-  return {
-    public: public,
-    getPublicMessage: getPublicMessage,
-    setPublicMessage: setPublicMessage
-  }
+  return stub;
+
 })();
-console.log('------RMP--------');
-console.log('RMP.public:', RMP.public);
-console.log('RMP.getPublicMessage()):', RMP.getPublicMessage());
-console.log("RMP.setPublicMessage('PUBLIC!'):", RMP.setPublicMessage('PUBLIC!'));
-console.log("RMP.public:", RMP.public);
-console.log("RMP.getPublicMessage():", RMP.getPublicMessage());
-console.log("RMP._secret:", RMP._secret);
-console.log("RMP._secretMethod():", RMP._secretMethod());
+
+console.log('-------STUB--------')
+console.log('Stub.public:', Stub.public);
+console.log('Stub.getPublicMessage()):', Stub.getPublicMessage());
+console.log("Stub.setPublicMessage('PUBLIC!'):", Stub.setPublicMessage('PUBLIC!'));
+console.log("Stub.public:", Stub.public);
+console.log("Stub.getPublicMessage():", Stub.getPublicMessage());
+console.log("Stub.secret:", Stub.secret);
+console.log("Stub.secretMethod():", Stub.secretMethod());
