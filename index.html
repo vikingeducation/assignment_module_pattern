@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+    Module Madness
+    </title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="assets/warmup.js"></script>
+    <script src="assets/model.js"></script>
+    <script src="assets/view.js"></script>
+    <script src="assets/controller.js"></script>
+    <script>
+      $(document).ready(function(){
+        MOLES.Controller.init();
+      })
+    </script>
+  </head>
+  <body>
+  <h1>Whac-A-Rectangle</h1>
+  <p>You have 60 seconds to whack as many yellow rectangles as you can!</p>
+   <a id="start" class="btn">Start</a>
+  <div id="board">
+  <div class="score">Score: <span id="points">0</span></div>
+    <ul class="moles">
+      <li data-id="1"></li>
+      <li data-id="2"></li>
+      <li data-id="3"></li>
+      <li data-id="4"></li>
+      <li data-id="5"></li>
+      <li data-id="6"></li>
+      <li data-id="7"></li>
+      <li data-id="8"></li>
+    </ul>
+   
+  </div>
+    <p><i>*No rectangles are harmed in this game.</i></p>
+  </body>
+</html>
