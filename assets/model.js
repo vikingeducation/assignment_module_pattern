@@ -1,12 +1,12 @@
 var MOLES = MOLES || {};
 
 MOLES.Model = (function() {
-  var score = 0;
-  var max = 800;
-  var min = 300;
+  var _score = 0;
+  var _max = 800;
+  var _min = 300;
 
   var reset = function() {
-    score = 0;
+    _score = 0;
   }
 
   var createMolePosition = function() {
@@ -14,15 +14,15 @@ MOLES.Model = (function() {
   }
 
   var getRandomInterval = function() {
-    return Math.floor(Math.random() * (max - min)) + min;
+    return Math.floor(Math.random() * (_max - _min)) + _min;
   }
 
   var updateScore = function() {
-    score += 10;
+    _score += 10;
   }
 
   var getScore = function() {
-    return score;
+    return _score;
   }
 
   return {

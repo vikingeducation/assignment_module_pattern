@@ -2,8 +2,8 @@ var MOLES = MOLES || {};
 
 MOLES.Controller = (function(Model, View) {
 
-  var gameDuration = 60000;
-  var appearance, disappearance, gameOn;
+  var _gameDuration = 60000;
+  var_appearance, _disappearance;
 
   var init = function() {
     View.init({
@@ -13,7 +13,7 @@ MOLES.Controller = (function(Model, View) {
   }
 
   var _startGame = function() {
-    gameOver = false;
+    _gameOver = false;
     View.renderScore(Model.getScore());
     window.setTimeout(_outOfTime, gameDuration);
     _runGame();
@@ -21,20 +21,20 @@ MOLES.Controller = (function(Model, View) {
 
   var _outOfTime = function() {
     alert('Out of Time! Game Over.');
-    gameOver = true;
+    _gameOver = true;
     _resetRound();
     Model.reset();
   }
 
   var _runGame = function() {
-    if (!gameOver) {
-      appearance = window.setTimeout(_showMole, Model.getRandomInterval());
+    if (!_gameOver) {
+      _appearance = window.setTimeout(_showMole, Model.getRandomInterval());
     }
   }
 
   var _showMole = function() {
     View.showMole(Model.createMolePosition());
-    disappearance = window.setTimeout(function() {
+    _disappearance = window.setTimeout(function() {
       _resetRound();
       _runGame();
     }, Model.getRandomInterval());
@@ -43,7 +43,7 @@ MOLES.Controller = (function(Model, View) {
   var _resetRound = function() {
     View.clearBoard();
     clearTimeout(appearance);
-    clearTimeout(disappearance);
+    clearTimeout(_disappearance);
   }
 
   var _moleWhacked = function() {
