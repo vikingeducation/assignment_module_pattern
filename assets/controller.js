@@ -3,7 +3,7 @@ var MOLES = MOLES || {};
 MOLES.Controller = (function(Model, View) {
 
   var _gameDuration = 60000;
-  var_appearance, _disappearance;
+  var _appearance, _disappearance;
 
   var init = function() {
     View.init({
@@ -15,7 +15,7 @@ MOLES.Controller = (function(Model, View) {
   var _startGame = function() {
     _gameOver = false;
     View.renderScore(Model.getScore());
-    window.setTimeout(_outOfTime, gameDuration);
+    window.setTimeout(_outOfTime, _gameDuration);
     _runGame();
   }
 
@@ -42,7 +42,7 @@ MOLES.Controller = (function(Model, View) {
 
   var _resetRound = function() {
     View.clearBoard();
-    clearTimeout(appearance);
+    clearTimeout(_appearance);
     clearTimeout(_disappearance);
   }
 
